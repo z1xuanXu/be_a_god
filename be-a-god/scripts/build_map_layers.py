@@ -103,21 +103,22 @@ def main() -> int:
         if merged.get("id") in sources:
             merged["source"] = sources[merged["id"]]
         places.append(merged)
-    layers = {
+    merged = {
         "schema": "be-a-god.map-layers.v1",
         "world_id": active.get("world_id", world.name),
         "levels": hierarchy.get("levels", ["world", "region", "scene"]),
         "nodes": nodes,
         "places": places,
         "brushes": brushes,
+        "map_generation": load_json(world / "base" / "maps" / "hierarchy.json", {}).get("map_generation", {"status": "pending", "source": "missing"}),
         "read_policy": "frontend map layers only; story text not included",
     }
     if args.dry_run:
-        print(json.dumps(layers, ensure_ascii=False, indent=2))
+        print(json.dumps(merged, ensure_ascii=False, indent=2))
         return 0
     output = world / "dashboard" / "map-layers.json"
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(layers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    output.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Built map layers: {output}")
     return 0
 

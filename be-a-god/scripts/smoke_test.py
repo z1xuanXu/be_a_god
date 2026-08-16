@@ -1289,8 +1289,11 @@ def main() -> int:
         loc_node = next((node for node in map_layers.get("nodes", []) if node.get("id") == "LOC-001"), None)
         if not loc_node or loc_node.get("source") != "story/main/state/locations/LOC-001-river-market.md":
             raise SystemExit("map layers did not include location source pointer")
-        if not any(brush.get("id") == "BRUSH-RIVER-001" and brush.get("source") == "base/maps/terrain-brushes.json" for brush in map_layers.get("brushes", [])):
-            raise SystemExit("map layers did not include mutable terrain brushes")
+        if map_layers.get("map_generation", {}).get("status") == "generated":
+            if not map_layers.get("brushes"):
+                raise SystemExit("generated map did not include mutable terrain brushes")
+        elif map_layers.get("map_generation", {}).get("status") != "pending":
+            raise SystemExit("map layers did not declare map generation state")
         failed_brush_id = run_expect_fail([str(SCRIPTS / "set_map_brush.py"), "--world", str(world), "--brush-id", "../BAD", "--kind", "river", "--points-json", "[[1,2],[3,4]]", "--dry-run"])
         if "brush-id must contain" not in (failed_brush_id.stderr + failed_brush_id.stdout):
             raise SystemExit("set_map_brush.py did not reject unsafe brush id")

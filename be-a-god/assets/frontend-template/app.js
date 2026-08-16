@@ -491,9 +491,11 @@ async function submitPendingFrontendAction() {
 function positionOf(item, fallbackIndex = 0) {
   const parsedX = Number(item.x);
   const parsedY = Number(item.y);
-  const x = Number.isFinite(parsedX) ? parsedX : 18 + ((fallbackIndex * 19) % 72);
-  const y = Number.isFinite(parsedY) ? parsedY : 18 + ((fallbackIndex * 29) % 68);
-  return { x, y };
+  if (!Number.isFinite(parsedX) || !Number.isFinite(parsedY)) {
+    // MAP_COORDINATES_PENDING: never invent pseudo-random canonical positions.
+    return { x: 50, y: 50, pending: true };
+  }
+  return { x: clamp(parsedX, 0, 100), y: clamp(parsedY, 0, 100), pending: false };
 }
 
 function normalizeBrushPoint(point) {
@@ -849,6 +851,9 @@ function brushTerrainRadius(cell, brush) {
 }
 
 function rawTerrainForHexCell(cell) {
+  const creation = mapLayers.map_generation || {};
+  if (creation.status === "pending") return "meadow";
+
   const candidates = activeBrushes()
     .map((brush) => ({ brush, distance: distanceToBrush(cell, brush), radius: brushTerrainRadius(cell, brush) }))
     .sort((a, b) => a.distance - b.distance);
@@ -970,6 +975,7 @@ function showMapObjectDetail(kind, item, snapped) {
 
 function renderHexUnit(parent, item, kind, index, options = {}) {
   const pos = positionOf(item, index);
+  if (pos.pending) return;
   const level = mapLevelForScale();
   const snapped = nearestHexCenter(pos, mapLevelForScale());
   const pieceWidth = snapped.drawWidth * 0.72;

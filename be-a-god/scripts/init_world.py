@@ -356,6 +356,60 @@ def mkdirs(world: Path) -> list[Path]:
     return paths
 
 
+def materialize_creation_map(brief_text: str, starting_region: str) -> dict:
+    """Create a deterministic semantic map seed from the confirmed brief."""
+    region_name = starting_region if starting_region and starting_region != "未指定起点" else "起始地区"
+    region_id = "LOC-START"
+    text = brief_text.lower()
+    terrain_rules = [
+        (("river", "河", "溪"), "river", [[18, 22], [34, 38], [51, 55], [78, 74]], 6, "#315b76"),
+        (("forest", "woods", "森林", "林地"), "forest", [[58, 22], [66, 31], [73, 38]], 5, "#557542"),
+        (("mountain", "山脉", "高山", "群山"), "hills", [[22, 68], [35, 61], [47, 67]], 6, "#765c38"),
+        (("desert", "沙漠", "荒漠"), "desert", [[68, 26], [78, 38], [72, 51]], 7, "#b98c45"),
+        (("marsh", "swamp", "沼泽", "湿地"), "marsh", [[24, 68], [31, 76], [42, 71]], 6, "#60734f"),
+        (("coast", "island", "sea", "海岸", "岛", "海洋"), "coast", [[10, 16], [9, 43], [12, 76]], 7, "#456f86"),
+        (("snow", "tundra", "冰原", "雪原", "冻土"), "snow", [[32, 15], [50, 12], [67, 17]], 7, "#9eb5bd"),
+        (("volcano", "volcanic", "火山"), "volcanic", [[76, 20], [82, 27]], 6, "#754538"),
+    ]
+    brushes = []
+    for keywords, kind, points, width, color in terrain_rules:
+        if not any(keyword in text for keyword in keywords):
+            continue
+        brushes.append({
+            "id": f"BRUSH-CREATION-{kind.upper()}",
+            "kind": kind,
+            "label": f"创世地形：{kind}",
+            "level": "region",
+            "points": points,
+            "width": width,
+            "density": 16,
+            "jitter": 2,
+            "color": color,
+            "mutable_by_divine_action": True,
+        })
+    map_generation = {
+        "status": "generated" if brushes else "pending",
+        "source": "setup/WORLD-BRIEF.md",
+        "method": "confirmed-brief-keyword-seed",
+    }
+    return {
+        "hierarchy": {
+            "schema": "be-a-god.map-hierarchy.v1",
+            "levels": ["world", "region", "scene"],
+            "nodes": [{"id": region_id, "name": region_name, "kind": "region", "level": "region"}],
+            "map_generation": map_generation,
+        },
+        "coordinates": {
+            "schema": "be-a-god.coordinates.v1",
+            "coordinate_system": "normalized-0-100",
+            "cell_size_meters": 5000,
+            "places": [{"id": region_id, "name": region_name, "kind": "region", "level": "region", "x": 50, "y": 50}],
+        },
+        "brushes": brushes,
+        "map_generation": map_generation,
+    }
+
+
 def initial_files(
     world: Path,
     world_id: str,
@@ -422,6 +476,7 @@ def initial_files(
         world_summary_lines.append(f"- tone: {tone}")
     if absolute_prohibitions:
         world_summary_lines.append(f"- absolute_prohibitions: {absolute_prohibitions_text}")
+    creation_map = materialize_creation_map(brief_text, starting_region)
     return {
         world / "setup" / "WORLD-BRIEF.md": brief_text,
         world / "setup" / "drafts" / "world-draft.md": brief_text,
@@ -472,43 +527,12 @@ def initial_files(
             "created_at": created_at,
         },
         story_main / "random" / "random-log.jsonl": "",
-        world / "base" / "maps" / "hierarchy.json": {
-            "schema": "be-a-god.map-hierarchy.v1",
-            "levels": ["world", "region", "scene"],
-            "nodes": [],
-        },
-        world / "base" / "maps" / "coordinates.json": {
-            "schema": "be-a-god.coordinates.v1",
-            "places": [],
-        },
+        world / "base" / "maps" / "hierarchy.json": creation_map["hierarchy"],
+        world / "base" / "maps" / "coordinates.json": creation_map["coordinates"],
         world / "base" / "maps" / "terrain-brushes.json": {
             "schema": "be-a-god.terrain-brushes.v1",
-            "brushes": [
-                {
-                    "id": "BRUSH-RIVER-001",
-                    "kind": "river",
-                    "label": "初始主河道",
-                    "level": "region",
-                    "points": [[12, 24], [28, 38], [42, 61], [74, 74]],
-                    "width": 7,
-                    "density": 18,
-                    "jitter": 2,
-                    "color": "#315b76",
-                    "mutable_by_divine_action": True,
-                },
-                {
-                    "id": "BRUSH-FOREST-001",
-                    "kind": "forest",
-                    "label": "初始林地",
-                    "level": "region",
-                    "points": [[62, 26], [67, 31], [72, 28], [69, 36]],
-                    "width": 5,
-                    "density": 14,
-                    "jitter": 4,
-                    "color": "#557542",
-                    "mutable_by_divine_action": True,
-                },
-            ],
+            "brushes": creation_map["brushes"],
+            "map_generation": creation_map["map_generation"],
             "read_policy": "terrain brush particles for frontend map only; story text not included",
         },
         world / "indexes" / "entities.json": {"schema": "be-a-god.entity-index.v1", "entities": []},
@@ -578,36 +602,10 @@ def initial_files(
             "schema": "be-a-god.map-layers.v1",
             "world_id": world_id,
             "levels": ["world", "region", "scene"],
-            "nodes": [],
-            "places": [],
-            "brushes": [
-                {
-                    "id": "BRUSH-RIVER-001",
-                    "kind": "river",
-                    "label": "初始主河道",
-                    "level": "region",
-                    "points": [[12, 24], [28, 38], [42, 61], [74, 74]],
-                    "width": 7,
-                    "density": 18,
-                    "jitter": 2,
-                    "color": "#315b76",
-                    "source": "base/maps/terrain-brushes.json",
-                    "mutable_by_divine_action": True,
-                },
-                {
-                    "id": "BRUSH-FOREST-001",
-                    "kind": "forest",
-                    "label": "初始林地",
-                    "level": "region",
-                    "points": [[62, 26], [67, 31], [72, 28], [69, 36]],
-                    "width": 5,
-                    "density": 14,
-                    "jitter": 4,
-                    "color": "#557542",
-                    "source": "base/maps/terrain-brushes.json",
-                    "mutable_by_divine_action": True,
-                },
-            ],
+            "nodes": creation_map["hierarchy"]["nodes"],
+            "places": creation_map["coordinates"]["places"],
+            "brushes": creation_map["brushes"],
+            "map_generation": creation_map["map_generation"],
             "read_policy": "frontend map layers only; story text not included",
         },
         world / "system" / "turn-ledger.jsonl": "",
