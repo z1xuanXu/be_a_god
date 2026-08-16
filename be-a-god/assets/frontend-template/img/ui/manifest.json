@@ -1,0 +1,20 @@
+{
+  "schema": "be-a-god.ui-assets.v1",
+  "model": "gpt-image-2",
+  "assets": [
+    {
+      "file": "medieval-button-frame.png",
+      "purpose": "all non-map buttons",
+      "rgba": true,
+      "transparent_corners": true,
+      "transparent_pixel_percent": 34.47
+    },
+    {
+      "file": "medieval-input-frame.png",
+      "purpose": "input, select, and textarea controls",
+      "rgba": true,
+      "transparent_corners": true,
+      "transparent_pixel_percent": 35.98
+    }
+  ]
+}

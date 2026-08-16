@@ -1,0 +1,272 @@
+{
+  "schema": "be-a-god.map-layers.v1",
+  "world_id": "reedbend-demo",
+  "levels": [
+    "world",
+    "region",
+    "scene"
+  ],
+  "nodes": [
+    {
+      "id": "LOC-001",
+      "name": "Reedbend Market",
+      "level": "region",
+      "x": 46.0,
+      "y": 55.0,
+      "source": "story/main/state/locations/LOC-001-reedbend-market.md"
+    },
+    {
+      "id": "LOC-002",
+      "name": "Cedar Shrine Ford",
+      "level": "region",
+      "x": 31.0,
+      "y": 31.0,
+      "source": "story/main/state/locations/LOC-002-cedar-shrine-ford.md"
+    },
+    {
+      "id": "LOC-003",
+      "name": "West Hill Granary",
+      "level": "region",
+      "x": 68.0,
+      "y": 42.0,
+      "source": "story/main/state/locations/LOC-003-west-hill-granary.md"
+    }
+  ],
+  "places": [
+    {
+      "id": "LOC-001",
+      "name": "Reedbend Market",
+      "x": 46.0,
+      "y": 55.0,
+      "level": "region",
+      "source": "story/main/state/locations/LOC-001-reedbend-market.md"
+    },
+    {
+      "id": "LOC-002",
+      "name": "Cedar Shrine Ford",
+      "x": 31.0,
+      "y": 31.0,
+      "level": "region",
+      "source": "story/main/state/locations/LOC-002-cedar-shrine-ford.md"
+    },
+    {
+      "id": "LOC-003",
+      "name": "West Hill Granary",
+      "x": 68.0,
+      "y": 42.0,
+      "level": "region",
+      "source": "story/main/state/locations/LOC-003-west-hill-granary.md"
+    }
+  ],
+  "brushes": [
+    {
+      "id": "BRUSH-RIVER-001",
+      "kind": "river",
+      "label": "初始主河道",
+      "level": "region",
+      "points": [
+        [
+          12,
+          24
+        ],
+        [
+          28,
+          38
+        ],
+        [
+          42,
+          61
+        ],
+        [
+          74,
+          74
+        ]
+      ],
+      "width": 7,
+      "density": 18,
+      "jitter": 2,
+      "color": "#315b76",
+      "mutable_by_divine_action": true,
+      "source": "base/maps/terrain-brushes.json"
+    },
+    {
+      "id": "BRUSH-FOREST-001",
+      "kind": "forest",
+      "label": "初始林地",
+      "level": "region",
+      "points": [
+        [
+          62,
+          26
+        ],
+        [
+          67,
+          31
+        ],
+        [
+          72,
+          28
+        ],
+        [
+          69,
+          36
+        ]
+      ],
+      "width": 5,
+      "density": 14,
+      "jitter": 4,
+      "color": "#557542",
+      "mutable_by_divine_action": true,
+      "source": "base/maps/terrain-brushes.json"
+    },
+    {
+      "id": "DEMO-RIVER",
+      "kind": "river",
+      "label": "Rising river",
+      "level": "region",
+      "points": [
+        [
+          18.0,
+          22.0
+        ],
+        [
+          30.0,
+          31.0
+        ],
+        [
+          45.0,
+          53.0
+        ],
+        [
+          58.0,
+          66.0
+        ],
+        [
+          79.0,
+          76.0
+        ]
+      ],
+      "width": 7.0,
+      "density": 18.0,
+      "jitter": 2.0,
+      "color": "#315b76",
+      "mutable_by_divine_action": true,
+      "source": "story/main/state/terrain-brushes.json"
+    },
+    {
+      "id": "DEMO-CEDARS",
+      "kind": "forest",
+      "label": "Cedar ford grove",
+      "level": "region",
+      "points": [
+        [
+          24.0,
+          25.0
+        ],
+        [
+          29.0,
+          29.0
+        ],
+        [
+          35.0,
+          34.0
+        ],
+        [
+          39.0,
+          38.0
+        ]
+      ],
+      "width": 6.0,
+      "density": 26.0,
+      "jitter": 4.0,
+      "color": "#557542",
+      "mutable_by_divine_action": true,
+      "source": "story/main/state/terrain-brushes.json"
+    },
+    {
+      "id": "DEMO-HILLS",
+      "kind": "hills",
+      "label": "West granary hill",
+      "level": "region",
+      "points": [
+        [
+          62.0,
+          38.0
+        ],
+        [
+          68.0,
+          42.0
+        ],
+        [
+          74.0,
+          47.0
+        ]
+      ],
+      "width": 8.0,
+      "density": 15.0,
+      "jitter": 3.0,
+      "color": "#765c38",
+      "mutable_by_divine_action": true,
+      "source": "story/main/state/terrain-brushes.json"
+    },
+    {
+      "id": "BRUSH-MIRA-RING-001",
+      "kind": "river",
+      "label": "河神令一圈新河道环绕米拉所在的渡口",
+      "level": "region",
+      "points": [
+        [
+          52.0,
+          57.0
+        ],
+        [
+          50.5,
+          61.2
+        ],
+        [
+          46.5,
+          64.5
+        ],
+        [
+          41.5,
+          64.5
+        ],
+        [
+          37.5,
+          61.2
+        ],
+        [
+          36.0,
+          57.0
+        ],
+        [
+          37.5,
+          52.8
+        ],
+        [
+          41.5,
+          49.5
+        ],
+        [
+          46.5,
+          49.5
+        ],
+        [
+          50.5,
+          52.8
+        ],
+        [
+          52.0,
+          57.0
+        ]
+      ],
+      "width": 3.0,
+      "density": 32.0,
+      "jitter": 0.6,
+      "color": "#315b76",
+      "mutable_by_divine_action": true,
+      "source": "story/main/state/terrain-brushes.json"
+    }
+  ],
+  "read_policy": "frontend map layers only; story text not included"
+}

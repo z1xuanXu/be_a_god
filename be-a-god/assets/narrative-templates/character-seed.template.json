@@ -1,0 +1,19 @@
+{
+  "template": "character-seed",
+  "schema": "be-a-god.semantic-template.v1",
+  "use_when": "A durable important character is created or promoted to plot relevance.",
+  "fields": {
+    "desire": "What the character actively wants.",
+    "fear": "What they will avoid or hide.",
+    "misunderstanding": "A believable wrong belief.",
+    "resources": ["Tools, allies, status, knowledge, money, force, access."],
+    "relationships": {"<other-id>": "concrete relationship"},
+    "secret": "A fact that can create later consequence.",
+    "god_view": "Truth visible to the game master or god, not necessarily public."
+  },
+  "constraints": [
+    "Do not make every character loyal or villainous.",
+    "Tie at least one field to a resource, institution, environment, or prior event.",
+    "Keep the public state shorter than the private semantic draft."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "be-a-god.terrain-brushes.v1",
+  "brushes": [
+    {
+      "id": "BRUSH-RIVER-001",
+      "kind": "river",
+      "label": "初始主河道",
+      "level": "region",
+      "points": [
+        [
+          12,
+          24
+        ],
+        [
+          28,
+          38
+        ],
+        [
+          42,
+          61
+        ],
+        [
+          74,
+          74
+        ]
+      ],
+      "width": 7,
+      "density": 18,
+      "jitter": 2,
+      "color": "#315b76",
+      "mutable_by_divine_action": true
+    },
+    {
+      "id": "BRUSH-FOREST-001",
+      "kind": "forest",
+      "label": "初始林地",
+      "level": "region",
+      "points": [
+        [
+          62,
+          26
+        ],
+        [
+          67,
+          31
+        ],
+        [
+          72,
+          28
+        ],
+        [
+          69,
+          36
+        ]
+      ],
+      "width": 5,
+      "density": 14,
+      "jitter": 4,
+      "color": "#557542",
+      "mutable_by_divine_action": true
+    }
+  ],
+  "read_policy": "terrain brush particles for frontend map only; story text not included"
+}

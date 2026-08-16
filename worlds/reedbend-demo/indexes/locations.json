@@ -1,0 +1,40 @@
+{
+  "schema": "be-a-god.location-index.v1",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "locations": [
+    {
+      "id": "LOC-001",
+      "name": "Reedbend Market",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-001-reedbend-market.md",
+      "x": 46.0,
+      "y": 55.0
+    },
+    {
+      "id": "LOC-002",
+      "name": "Cedar Shrine Ford",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-002-cedar-shrine-ford.md",
+      "x": 31.0,
+      "y": 31.0
+    },
+    {
+      "id": "LOC-003",
+      "name": "West Hill Granary",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-003-west-hill-granary.md",
+      "x": 68.0,
+      "y": 42.0
+    }
+  ]
+}

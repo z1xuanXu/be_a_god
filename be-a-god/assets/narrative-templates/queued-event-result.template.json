@@ -1,0 +1,28 @@
+{
+  "template": "queued-event-result",
+  "schema": "be-a-god.settlement-template.v1",
+  "use_when": "A due queued event is being resolved after time advance pauses.",
+  "required_output": {
+    "visible_narration": "The event as it manifests at the pause.",
+    "summary": "Settlement summary.",
+    "gm_summary": "Why it happened and what changed.",
+    "settlement_plan": {
+      "event": "Confirmed event node.",
+      "queue": "Mark due item settled or keep a new follow-up queue.",
+      "state": "State changes caused by the event.",
+      "chronicle": "Objective chronicle note.",
+      "player_intervention_point": "What the player can still change."
+    }
+  },
+  "minimal_result_shape": {
+    "summary": "<event outcome>",
+    "visible_narration": "<what appears now>",
+    "gm_summary": "<pressure -> actor choice -> consequence>",
+    "settlement_plan": {
+      "event": {"title": "<title>", "type": "queued-event"},
+      "queue": {"settle_current": true},
+      "chronicle": "<objective record>",
+      "player_intervention_point": "<choice>"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "summary": "米拉承认自己藏起受损誓板，是为了保护目击粮食偷运的孩子。",
+  "visible_narration": "雨势稍缓时，米拉把神带到渡船棚后的旧桩旁。她从缠绳的空心木轴里取出半块裂开的誓板：上面还留着粮船夜间靠岸的刻痕。她没有辩解，只说那个看见搬运的人是个无家可归的孩子；若誓板当日交给神龛，孩子会先被守粮人抓走。她愿意交出证物，但请求河神先为孩子留下活路。",
+  "gm_summary": "米拉因保护目击者而隐匿证物；公开证物可以揭露偷运，但也会使孩子暴露，形成证据与保护之间的干预点。",
+  "settlement_plan": {"event": {"title": "米拉交出受损誓板", "type": "observation"}, "state": "受损誓板成为可用证物，孩子身份仍未公开。", "chronicle": "洪水钟后，米拉向河神交出一块记录夜间粮船的受损誓板。", "player_intervention_point": "决定如何使用证物并保护目击孩子。"},
+  "event": {"title": "米拉交出受损誓板", "type": "observation", "time": "year 1, day 3", "location": "LOC-001", "actors": ["CHAR-0001"], "causes": ["damaged oath tablet", "child witness at risk"], "effects": ["evidence revealed", "witness remains protected"], "tags": ["oath", "evidence", "witness"]},
+  "consequences": "河神获得粮食偷运的证据，但尚未公开目击者。",
+  "chronicle": "洪水钟后，米拉向河神交出一块记录夜间粮船的受损誓板。",
+  "current_scene": "受损誓板躺在湿绳上，刻痕指向一次未入账的夜间粮船。",
+  "state_appends": [{"path": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md", "text": "米拉已向河神交出受损誓板，并说明她藏匿证物是为了保护一名孩子目击者。"}],
+  "dashboard": {"piece_updates": [{"id": "CHAR-0001", "status": "plot-ready"}]},
+  "timeline_label": "米拉交出受损誓板"
+}

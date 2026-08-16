@@ -1,0 +1,164 @@
+{
+  "schema": "be-a-god.interaction-packet.v1",
+  "packet_id": "IP-20260814161324",
+  "request_id": "AR-20260814161322474629",
+  "created_at": "2026-08-14T16:13:24.444167+00:00",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "player_intent": "ask Old Sela how river oaths should judge the theft",
+  "action_request": {
+    "request_id": "AR-20260814161322474629",
+    "status": "requested",
+    "action": "observe",
+    "intent": "ask Old Sela how river oaths should judge the theft",
+    "source": "story/main/runtime/action-requests/AR-20260814161322474629/request.json"
+  },
+  "interaction": {
+    "target_id": "CHAR-0003",
+    "target_kind": "character",
+    "mode": "observe"
+  },
+  "scene": {
+    "world_time": "year 1, day 5",
+    "focal_place": "Reedbend Market",
+    "current_scene": "水位开始缓慢回落，渡船连续运送病人与柴薪，市场没有发生抢粮。",
+    "current_summary": "# CURRENT\n\n水位开始缓慢回落，渡船连续运送病人与柴薪，市场没有发生抢粮。\n"
+  },
+  "player": {
+    "summary": "# PLAYER\n\n- god_role: God of River Oaths\n- power_mode: hybrid\n- timeline_display: vertical\n\n## Content profile summary\n\n- content_profile: setup/content-profile.json\n- content_preset: standard\n- content_absolute_bans: do not eroticize coercion; do not turn famine into spectacle\n- content_absolute_bans_count: 2\n\n## Advance profile summary\n\n- advance_profile: setup/advance-profile.json\n- advance_default_preset: hybrid\n- advance_default_mode: hybrid\n- advance_default_days: 7\n- advance_default_wander: True\n- advance_default_stop_on_queue: True\n\n## Narrative profile summary\n\n- narrative_profile: setup/narrative-profile.json\n- narrative_default_profile: hybrid-historical\n- narrative_default_scale: mixed-closeup-chronicle\n- narrative_priority: causality > world_continuity > character_agency > historical_texture > dramatic_presentation\n- narrative_required_output_layers: visible_narration, gm_summary, settlement_plan\n"
+  },
+  "world_rules": {
+    "source": "setup/world-rules.json",
+    "canon_source": "CANON.md",
+    "active": []
+  },
+  "narrative_profile": {
+    "source": "setup/narrative-profile.json",
+    "default_profile": "hybrid-historical",
+    "label": "混合模式，但偏真实历史感",
+    "default_scale": "mixed-closeup-chronicle",
+    "priority_order": [
+      "causality",
+      "world_continuity",
+      "character_agency",
+      "historical_texture",
+      "dramatic_presentation"
+    ],
+    "required_output_layers": [
+      "visible_narration",
+      "gm_summary",
+      "settlement_plan"
+    ],
+    "event_pressure_sources": [
+      "character",
+      "resource",
+      "institution",
+      "environment"
+    ],
+    "event_chain": [
+      "pressure",
+      "actor_choice",
+      "direct_consequence",
+      "second_order_consequence",
+      "player_intervention_point"
+    ],
+    "style_avoid": [
+      "无代价爽点",
+      "模糊史诗腔",
+      "角色突然失去能动性",
+      "只用命运、古老、回响等词替代具体原因",
+      "没有落盘计划的长篇铺陈"
+    ]
+  },
+  "target": {
+    "file": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+    "document": "# CHAR-0003 Old Sela of Cedar Knots\n\n- schema: be-a-god.entity-card.v1\n- id: CHAR-0003\n- kind: character\n- public_name: Old Sela of Cedar Knots\n- branch_id: main\n- status: wandering\n- attention: ignored\n- summary: Shrine keeper who remembers which oaths were sworn before the last flood.\n- location: LOC-002\n- x: 31\n- y: 33\n- level: region\n- source: demo-world\n\n## Public state\n\nSela sits at the cedar ford, tying and untying old oath cords.\n\n## Model semantic draft\n\nThe language model may generate or revise this section; the script only stores it.\n\n```json\n{\n  \"desire\": \"keep the river oath system from becoming a market weapon\",\n  \"fear\": \"the god will answer too loudly and break human institutions\",\n  \"misunderstanding\": \"underestimates how hungry the hill families are\",\n  \"resources\": [\n    \"oath memory\",\n    \"ritual authority\",\n    \"cedar shrine novices\"\n  ],\n  \"relationships\": {\n    \"CHAR-0001\": \"protective\",\n    \"CHAR-0002\": \"suspicious\"\n  },\n  \"secret\": \"knows a pre-flood vow that can redirect blame away from the ferry\",\n  \"god_view\": \"She notices subtle divine signs and will test them.\"\n}\n```\n",
+    "dashboard_state": {
+      "source": "dashboard.data.pieces",
+      "data": {
+        "id": "CHAR-0003",
+        "kind": "character",
+        "label": "Old Sela of Cedar Knots",
+        "location": "LOC-002",
+        "status": "wandering",
+        "attention": "ignored",
+        "source": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+        "x": 31.0,
+        "y": 33.0,
+        "level": "region"
+      }
+    },
+    "candidate_count": 1
+  },
+  "context_policy": {
+    "allowed_sources": [
+      {
+        "path": "ACTIVE.md",
+        "reason": "active world and branch pointer"
+      },
+      {
+        "path": "story/main/SAVE.md",
+        "reason": "active branch compact save"
+      },
+      {
+        "path": "story/main/CURRENT.md",
+        "reason": "current immediate scene"
+      },
+      {
+        "path": "PLAYER.md",
+        "reason": "player god settings and display preference"
+      },
+      {
+        "path": "setup/world-rules.json",
+        "reason": "active player-confirmed world rules"
+      },
+      {
+        "path": "setup/narrative-profile.json",
+        "reason": "compact narrative quality profile"
+      },
+      {
+        "path": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+        "reason": "clicked target card"
+      }
+    ],
+    "forbidden_sources": [
+      "story/*/chapters/**",
+      "story/*/events/** except explicitly listed event pointers",
+      "story/*/branches/** except active parent chain when branch inheritance is required",
+      "sibling branches",
+      "random/random-log.jsonl except when the interaction directly audits a random result"
+    ],
+    "source_budget": 7,
+    "requested_source_budget": 6,
+    "knowledge_boundary": "Use only packet content and allowed source pointers unless followup_source_request is approved.",
+    "must_not_do": [
+      "Do not read full chapters before a simple interaction.",
+      "Do not scan sibling branches.",
+      "Do not settle canonical consequences in this packet step.",
+      "Do not let non-omniscient characters use player-only knowledge.",
+      "Do not ignore the supplied narrative profile when resolving meaningful events."
+    ]
+  },
+  "followup_source_request": {
+    "needed": false,
+    "reason": null,
+    "requested_sources": [],
+    "trigger_conditions": [
+      "old promise, curse, oath, or debt is invoked",
+      "hidden identity or secret knowledge matters",
+      "death, succession, war, branch inheritance, or irreversible action is touched",
+      "player explicitly asks for recap or audit"
+    ]
+  },
+  "settlement_hint": {
+    "after_narration_run": "settle_interaction.py",
+    "expected_outputs": [
+      "event node",
+      "entity/location state update if changed",
+      "objective chronicle entry if formal event occurred",
+      "timeline/dashboard rebuild",
+      "file manifest refresh"
+    ]
+  }
+}

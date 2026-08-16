@@ -1,0 +1,53 @@
+{
+  "summary": "米拉以匿名绳结保存孩子证词，使证据公开而身份暂时受保护。",
+  "visible_narration": "米拉把三种颜色的细绳结在同一根渡索上：白结代表孩子亲眼所见，蓝结代表誓板刻痕，红结代表账册缺口。孩子只需在老塞拉面前确认白结，姓名不写进市场账板；若日后证词受质疑，再由神龛与河粮议席共同开启封存记录。市场第一次有了不必把弱者推到人群中央的见证办法。",
+  "gm_summary": "神意通过制度灵感显现；米拉用渡船传统设计匿名见证，保护孩子同时保留证据链。",
+  "settlement_plan": {
+    "event": {
+      "title": "米拉建立见证绳结",
+      "type": "interaction"
+    },
+    "state": "米拉建立见证绳结制度，儿童目击者的身份由神龛封存，证词进入公开证据链。",
+    "chronicle": "洪水后第八日，芦湾市场开始使用匿名见证绳结保护弱小证人。",
+    "player_intervention_point": "河神仍可改变新制度的执行方式。"
+  },
+  "event": {
+    "title": "米拉建立见证绳结",
+    "type": "interaction",
+    "location": "LOC-001",
+    "actors": [
+      "CHAR-0001"
+    ],
+    "causes": [
+      "flood recovery",
+      "public oath"
+    ],
+    "effects": [
+      "witness protection",
+      "evidence preserved"
+    ],
+    "tags": [
+      "witness",
+      "oath",
+      "institution"
+    ]
+  },
+  "consequences": "米拉建立见证绳结制度，儿童目击者的身份由神龛封存，证词进入公开证据链。",
+  "chronicle": "洪水后第八日，芦湾市场开始使用匿名见证绳结保护弱小证人。",
+  "current_scene": "米拉以匿名绳结保存孩子证词，使证据公开而身份暂时受保护。",
+  "state_appends": [
+    {
+      "path": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+      "text": "米拉建立见证绳结制度，儿童目击者的身份由神龛封存，证词进入公开证据链。"
+    }
+  ],
+  "dashboard": {
+    "piece_updates": [
+      {
+        "id": "CHAR-0001",
+        "status": "plot-ready"
+      }
+    ]
+  },
+  "timeline_label": "米拉建立见证绳结"
+}

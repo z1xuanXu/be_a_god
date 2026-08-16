@@ -1,0 +1,63 @@
+{
+  "schema": "be-a-god.timeline.v1",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "nodes": [
+    {
+      "id": "CHR-0001",
+      "event_id": "EVT-0001",
+      "time": "year 1, day 1",
+      "label": "EVT-0001 world confirmed",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0001-world-confirmed.md"
+    },
+    {
+      "id": "CHR-0002",
+      "event_id": "EVT-0002",
+      "time": "year 1, day 3",
+      "label": "EVT-0002 第一次洪水钟与临时河粮议席",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0002-第一次洪水钟与临时河粮议席.md"
+    },
+    {
+      "id": "CHR-0003",
+      "event_id": "EVT-0003",
+      "time": "year 1, day 3",
+      "label": "EVT-0003 米拉交出受损誓板",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0003-米拉交出受损誓板.md"
+    },
+    {
+      "id": "CHR-0004",
+      "event_id": "EVT-0004",
+      "time": "year 1, day 4",
+      "label": "EVT-0004 塔文核对夜间粮船",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0004-塔文核对夜间粮船.md"
+    },
+    {
+      "id": "CHR-0005",
+      "event_id": "EVT-0005",
+      "time": "year 1, day 5",
+      "label": "EVT-0005 老塞拉提出双重河誓",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0005-老塞拉提出双重河誓.md"
+    },
+    {
+      "id": "CHR-0006",
+      "event_id": "EVT-0006",
+      "time": "year 1, day 6",
+      "label": "EVT-0006 米拉建立见证绳结",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0006-米拉建立见证绳结.md"
+    },
+    {
+      "id": "CHR-0007",
+      "event_id": "EVT-0007",
+      "time": "year 1, day 7",
+      "label": "EVT-0007 第一次公开河粮审理",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0007-第一次公开河粮审理.md"
+    }
+  ]
+}

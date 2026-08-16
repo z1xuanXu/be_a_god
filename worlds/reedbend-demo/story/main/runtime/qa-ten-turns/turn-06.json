@@ -1,0 +1,53 @@
+{
+  "summary": "老塞拉主张先补偿避难者，再审判偷粮者。",
+  "visible_narration": "老塞拉从雪松浅滩回来时，袍角沾满淤泥。她听完誓板和账册的证词，在市场柱上划出两道线：第一道记欠给避难者的粮，第二道才记犯下偷运的人。她说，若审判先于补偿，饥饿的人只会看见权力争夺；若补偿没有审判，下一场洪水还会有人偷走同样的粮。",
+  "gm_summary": "宗教合法性要求修复与问责并行；塞拉把抽象河誓转成先补偿、后审判的程序。",
+  "settlement_plan": {
+    "event": {
+      "title": "老塞拉提出双重河誓",
+      "type": "interaction"
+    },
+    "state": "老塞拉提出双重河誓：先补足避难者的粮，再公开审判偷运责任。",
+    "chronicle": "洪水后第六日，神龛提出补偿与问责并行的双重河誓。",
+    "player_intervention_point": "河神仍可改变新制度的执行方式。"
+  },
+  "event": {
+    "title": "老塞拉提出双重河誓",
+    "type": "interaction",
+    "location": "LOC-001",
+    "actors": [
+      "CHAR-0003"
+    ],
+    "causes": [
+      "flood recovery",
+      "public oath"
+    ],
+    "effects": [
+      "restitution procedure",
+      "public trial planned"
+    ],
+    "tags": [
+      "shrine",
+      "oath",
+      "justice"
+    ]
+  },
+  "consequences": "老塞拉提出双重河誓：先补足避难者的粮，再公开审判偷运责任。",
+  "chronicle": "洪水后第六日，神龛提出补偿与问责并行的双重河誓。",
+  "current_scene": "老塞拉主张先补偿避难者，再审判偷粮者。",
+  "state_appends": [
+    {
+      "path": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+      "text": "老塞拉提出双重河誓：先补足避难者的粮，再公开审判偷运责任。"
+    }
+  ],
+  "dashboard": {
+    "piece_updates": [
+      {
+        "id": "CHAR-0003",
+        "status": "plot-ready"
+      }
+    ]
+  },
+  "timeline_label": "老塞拉提出双重河誓"
+}

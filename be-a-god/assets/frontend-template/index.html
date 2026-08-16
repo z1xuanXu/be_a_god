@@ -1,0 +1,381 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>成为神 - 世界看板模板</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./tutorial.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="世界状态">
+        <div>
+          <p class="eyebrow">Be A God</p>
+          <h1 id="world-title">未载入世界</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="stats">
+            <span id="world-time">时间：-</span>
+            <span id="weather">天气：-</span>
+            <span id="branch">枝丫：-</span>
+          </div>
+          <div class="load-controls" aria-label="载入世界数据">
+            <button id="open-tutorial" type="button">使用教程</button>
+            <button id="open-creation" type="button">创世填空</button>
+            <label>
+              载入 dashboard
+              <input id="dashboard-file" type="file" accept="application/json,.json" />
+            </label>
+            <label>
+              载入 timeline
+              <input id="timeline-file" type="file" accept="application/json,.json" />
+            </label>
+            <label>
+              载入 map layers
+              <input id="map-layers-file" type="file" accept="application/json,.json" />
+            </label>
+            <span id="load-status">当前使用样例数据</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="timeline-panel" aria-label="纵向世界时间线">
+          <div class="panel-header">
+            <h2>时间线</h2>
+            <p>上下滑动查看文明式编年</p>
+          </div>
+          <ol id="timeline" class="timeline"></ol>
+          <nav class="story-directory-panel" aria-label="剧情目录">
+            <div class="story-directory-heading">
+              <h2>剧情目录</h2>
+              <button id="story-current" type="button">回到当前剧情</button>
+            </div>
+            <ol id="story-directory" class="story-directory"></ol>
+          </nav>
+        </aside>
+
+        <section class="map-panel" aria-label="地图与棋子">
+          <div class="panel-header horizontal">
+            <div>
+              <h2>神视地图</h2>
+              <p>棋子和图钉来自 dashboard，不读取剧情正文</p>
+            </div>
+            <div class="zoom-depth" aria-label="自动地图层级">
+              <strong id="map-zoom-mode">自动层级：地区</strong>
+              <small>缩放时自动渐变</small>
+            </div>
+          </div>
+          <div class="map-view-tools" aria-label="地图缩放">
+            <button id="map-zoom-out" type="button" title="缩小地图">−</button>
+            <span id="map-zoom-label">100%</span>
+            <button id="map-zoom-in" type="button" title="放大地图">＋</button>
+            <button id="map-zoom-reset" type="button" title="重置视角">重置</button>
+          </div>
+          <div id="map" class="map" aria-live="polite"></div>
+          <section id="story-reader" class="story-reader" aria-label="剧情阅读器" tabindex="-1">
+            <header class="story-reader-header">
+              <div>
+                <p class="eyebrow">Chronicle</p>
+                <h2 id="story-title">当前剧情</h2>
+              </div>
+              <div class="story-reader-meta">
+                <span id="story-time">时间：--</span>
+                <span id="story-state">当前场景</span>
+              </div>
+            </header>
+            <article id="story-body" class="story-body">
+              <p>世界载入后，玩家可见的剧情会显示在这里。</p>
+            </article>
+            <footer class="story-reader-footer">
+              <span id="story-source">来源：dashboard.json</span>
+              <button id="story-back-current" type="button">返回当前剧情</button>
+            </footer>
+          </section>
+        </section>
+
+        <aside class="detail-panel" aria-label="详情与神权操作">
+          <div class="panel-header">
+            <h2>当前详情</h2>
+            <p>点击棋子、图钉或时间线节点</p>
+          </div>
+          <article id="detail" class="detail-card">
+            <h3>等待神明注视</h3>
+            <p>选择一个棋子或事件图钉后，这里显示最小交互入口。</p>
+          </article>
+          <div class="actions">
+            <button id="observe">观察</button>
+            <button id="speak">对话</button>
+            <button id="intervene">降下神谕</button>
+            <button id="advance">推进时间</button>
+            <button id="weather-override">改天气</button>
+            <button id="set-rule">锁定规则</button>
+            <button id="terrain-brush-action">改地形</button>
+            <button id="branch-action">创建分支</button>
+            <button id="ignore">忽略此人</button>
+            <button id="follow">关注此人</button>
+          </div>
+          <div class="commit-panel" aria-label="确认执行">
+            <p id="pending-action-status">还没有待提交的操作。先点击上面的神权按钮或在画笔编辑器生成地形神谕。</p>
+            <div class="commit-actions">
+              <button id="commit-action" type="button" disabled>确认提交 / 开始运行</button>
+              <button id="clear-pending-action" type="button">撤销草稿</button>
+            </div>
+          </div>
+          <details id="brush-editor" class="brush-editor-card">
+            <summary>画笔编辑器</summary>
+            <label>笔刷 ID<input id="brush-editor-id" placeholder="BRUSH-RIVER-NEW" /></label>
+            <label>
+              地形类型
+              <select id="brush-editor-kind">
+                <option value="river">river 河流</option>
+                <option value="tributary">tributary 支流</option>
+                <option value="hills">hills 山丘</option>
+                <option value="forest">forest 森林</option>
+                <option value="custom">custom 自定义</option>
+              </select>
+            </label>
+            <label>改变描述<input id="brush-editor-summary" placeholder="把支流画向北部森林" /></label>
+            <div class="brush-editor-grid">
+              <label>宽度<input id="brush-editor-width" type="number" min="0" max="30" step="0.5" value="5" /></label>
+              <label>密度<input id="brush-editor-density" type="number" min="0" max="80" step="1" value="12" /></label>
+              <label>抖动<input id="brush-editor-jitter" type="number" min="0" max="20" step="0.5" value="2" /></label>
+              <label>颜色<input id="brush-editor-color" type="color" value="#315b76" /></label>
+            </div>
+            <label>points-json<textarea id="brush-editor-points-json" rows="2" readonly></textarea></label>
+            <div class="brush-editor-actions">
+              <button id="brush-editor-toggle" type="button">开始点选</button>
+              <button id="brush-editor-undo" type="button">撤销一点</button>
+              <button id="brush-editor-clear" type="button">清空点</button>
+              <button id="brush-editor-copy" type="button">复制点位</button>
+              <button id="brush-editor-command" type="button">生成地形神谕</button>
+            </div>
+            <p id="brush-editor-status">未开始。点位会以 0..100 地图坐标生成 points-json。</p>
+          </details>
+          <details class="requests-card">
+            <summary>当前规则</summary>
+            <ul id="world-rules" class="action-requests"></ul>
+          </details>
+          <details class="requests-card">
+            <summary>叙事模式</summary>
+            <ul id="narrative-profile" class="action-requests"></ul>
+          </details>
+          <details class="requests-card">
+            <summary>神之骰</summary>
+            <ul id="random-log" class="action-requests"></ul>
+          </details>
+          <details class="requests-card">
+            <summary>关注状态</summary>
+            <ul id="attention-list" class="action-requests"></ul>
+          </details>
+          <details class="requests-card" open>
+            <summary>待处理动作</summary>
+            <ul id="action-requests" class="action-requests"></ul>
+          </details>
+        </aside>
+      </section>
+    </main>
+
+    <dialog id="creation-dialog" class="creation-dialog" aria-label="创世填空">
+      <form method="dialog" class="creation-form">
+        <div class="panel-header horizontal">
+          <div>
+            <h2>创世填空</h2>
+            <p>生成 WORLD-BRIEF.md 草稿；不会创建正式世界。</p>
+          </div>
+          <button id="close-creation" value="close" type="submit">关闭</button>
+        </div>
+        <div class="field-grid">
+          <label>世界 ID<input id="brief-world-id" placeholder="river-world" /></label>
+          <label>世界前提<textarea id="brief-premise" placeholder="这个世界最核心的一句话"></textarea></label>
+          <label>起始时代<input id="brief-era" placeholder="青铜末期 / 近未来 / 神话纪元" /></label>
+          <label>起始地区<input id="brief-region" placeholder="河湾集市 / 北境王都" /></label>
+          <label>神明身份<input id="brief-god-role" placeholder="河与契约之神" /></label>
+          <label>叙事基调<input id="brief-tone" placeholder="史诗但克制" /></label>
+          <label>绝对禁区<textarea id="brief-prohibitions" placeholder="每行一条，可留空"></textarea></label>
+          <label>类型参考<textarea id="brief-refs" placeholder="每行一条，可留空"></textarea></label>
+          <label>初始文化<textarea id="brief-cultures" placeholder="每行一条，可留空"></textarea></label>
+          <label>
+            内容边界
+            <select id="brief-content-profile">
+              <option value="standard">标准</option>
+              <option value="gentle">温和</option>
+              <option value="unsoftened">不主动淡化</option>
+              <option value="custom">自定义</option>
+            </select>
+          </label>
+          <label>内容禁区<textarea id="brief-content-bans" placeholder="每行一条，写入玩家绝对禁区"></textarea></label>
+          <label class="wide">玩家备注<textarea id="brief-notes" placeholder="其他你希望 AI 遵守或补全的内容"></textarea></label>
+        </div>
+        <div class="brief-actions">
+          <button id="generate-brief" type="button">生成草稿</button>
+          <button id="download-brief" type="button">下载 WORLD-BRIEF.md</button>
+        </div>
+        <textarea id="brief-output" class="brief-output" readonly placeholder="生成后的草稿会出现在这里"></textarea>
+      </form>
+    </dialog>
+    <dialog id="tutorial-dialog" class="tutorial-dialog" aria-label="从零开始游戏教程">
+      <form method="dialog" class="tutorial-page">
+        <div class="panel-header horizontal tutorial-header">
+          <div>
+            <p class="eyebrow">PLAYER HANDBOOK</p>
+            <h2>成为神：从创世到第一段历史</h2>
+            <p>六章图文向导。按顺序阅读，也可以直接点击章节。</p>
+          </div>
+          <button id="close-tutorial" value="close" type="submit">关闭教程</button>
+        </div>
+
+        <nav class="tutorial-tabs" aria-label="教程章节">
+          <button type="button" data-tutorial-target="1">1 从零开始</button>
+          <button type="button" data-tutorial-target="2">2 认识界面</button>
+          <button type="button" data-tutorial-target="3">3 地图与棋子</button>
+          <button type="button" data-tutorial-target="4">4 进行一回合</button>
+          <button type="button" data-tutorial-target="5">5 地形画笔</button>
+          <button type="button" data-tutorial-target="6">6 全部按钮</button>
+        </nav>
+
+        <div class="tutorial-progress" aria-label="教程进度"><span id="tutorial-progress"></span></div>
+
+        <!-- compatibility markers: tutorial-grid tutorial-mini-map -->
+        <div class="tutorial-chapters">
+          <section class="tutorial-chapter" data-tutorial-step="1">
+            <div class="tutorial-copy">
+              <p class="tutorial-kicker">第一章 · 创建世界</p><h3>从零开始</h3>
+              <ol class="tutorial-checklist">
+                <li><strong>点“创世填空”。</strong>填写世界 ID、世界前提、时代、地区、神明身份和叙事基调。</li>
+                <li><strong>写清绝对禁区。</strong>这会进入玩家内容边界，不应留给模型猜测。</li>
+                <li><strong>点“生成草稿”。</strong>先检查 WORLD-BRIEF；草稿不是正式世界，不会自动覆盖存档。</li>
+                <li><strong>下载并确认。</strong>正式初始化由后端使用确认后的 WORLD-BRIEF 完成。前端重新连接后才会显示新世界。</li>
+                <li><strong>先检查顶部。</strong>确认时间、天气、分支与推进预设符合你的开局设定。</li>
+              </ol>
+              <aside class="tutorial-warning"><strong>注意：</strong>“生成草稿”只生成文本；创建正式世界必须经过确认流程。世界 ID 应使用稳定的英文、数字或连字符。</aside>
+            </div>
+            <figure class="tutorial-visual tutorial-world-visual">
+              <img src="./img/ui/medieval-input-frame.png" alt="中世纪创世输入框素材" />
+              <figcaption><b>创世填空</b><span>锁定事实 → 生成草稿 → 检查 → 后端确认建世</span></figcaption>
+            </figure>
+          </section>
+
+          <section class="tutorial-chapter" data-tutorial-step="2" hidden>
+            <div class="tutorial-copy">
+              <p class="tutorial-kicker">第二章 · 看懂面板</p><h3>三栏就是三种职责</h3>
+              <div class="tutorial-flow">
+                <article><b>左：历史</b><span>时间线显示已确认事件和预定压力；剧情目录打开玩家可见正文。</span></article>
+                <article><b>中：世界</b><span>地图显示地形、角色、城邦、物资和事件；地图下方阅读完整剧情。</span></article>
+                <article><b>右：行动</b><span>先选目标，再观察、对话、神谕或管理关注；草稿在确认前不写正史。</span></article>
+              </div>
+              <ul class="tutorial-tips">
+                <li>点击时间线事件，会打开详情；若有正文，也会定位到同一剧情。</li>
+                <li>“回到当前剧情”只切回阅读位置，不会改变世界。</li>
+                <li>顶部文件选择器用于手动载入导出的 JSON；连接本地后端时通常无需手选。</li>
+              </ul>
+            </div>
+            <figure class="tutorial-visual tutorial-panel-visual">
+              <div><span>① 时间线<br />剧情目录</span><span>② 神视地图<br />剧情正文</span><span>③ 当前详情<br />神权操作</span></div>
+              <figcaption>先理解世界，再选择目标，最后行动。</figcaption>
+            </figure>
+          </section>
+
+          <section class="tutorial-chapter" data-tutorial-step="3" hidden>
+            <div class="tutorial-copy">
+              <p class="tutorial-kicker">第三章 · 导航世界</p><h3>地图与棋子</h3>
+              <ol class="tutorial-checklist">
+                <li><strong>拖动空白地图：</strong>平移视角；棋子和按钮本身不能被浏览器原生拖走。</li>
+                <li><strong>滚轮或 ＋／－：</strong>从世界、地区进入近景；400% 以上为任务近景，最大 1200%。</li>
+                <li><strong>点“重置”：</strong>回到 70% 和默认中心。</li>
+                <li><strong>点棋子：</strong>角色、城邦、建筑和事件会进入右侧“当前详情”。旗子中心落在当前六边格中心。</li>
+                <li><strong>读比例尺：</strong>左下角一格固定代表 5 km × 5 km，比例尺长度会随缩放变化。</li>
+              </ol>
+              <aside class="tutorial-warning"><strong>注意：</strong>地图视觉层级会随缩放切换，但世界坐标不变。旗子只代表位置，不代表角色占据五公里身体范围。</aside>
+            </div>
+            <figure class="tutorial-visual tutorial-map-visual">
+              <img class="tutorial-hex" src="./img/hex-river.png" alt="河流六边格" />
+              <img class="tutorial-piece character" src="./img/pieces/piece-character-ferryman.png" alt="角色旗子" />
+              <img class="tutorial-piece city" src="./img/pieces/piece-city-town.png" alt="城邦旗子" />
+              <div class="tutorial-scale-demo"><i></i><span>5 km</span></div>
+              <figcaption>角色旗、城邦旗都应完整位于一个六边格内。</figcaption>
+            </figure>
+          </section>
+
+          <section class="tutorial-chapter" data-tutorial-step="4" hidden>
+            <div class="tutorial-copy">
+              <p class="tutorial-kicker">第四章 · 核心循环</p><h3>进行一回合</h3>
+              <div class="tutorial-turn-loop">
+                <span>① 选择角色／事件</span><b>→</b><span>② 观察、对话或神谕</span><b>→</b><span>③ 检查待提交草稿</span><b>→</b><span>④ 确认提交</span><b>→</b><span>⑤ 阅读结算与后果</span>
+              </div>
+              <dl class="tutorial-action-summary">
+                <dt>观察</dt><dd>低干预地查看目标现状，适合第一次接触。</dd>
+                <dt>对话</dt><dd>与选中角色交流；模型只回读相关人物和关键历史。</dd>
+                <dt>降下神谕</dt><dd>进行明确干预，应写清目标、方式和愿意承担的代价。</dd>
+                <dt>推进时间</dt><dd>按当前预设机械推进；遇到重大队列事件会停下等待处理。</dd>
+              </dl>
+              <aside class="tutorial-warning"><strong>关键边界：</strong>大多数神权按钮先生成非正史请求。只有“确认提交 / 开始运行”后，后端才执行对应流程；剧情语义仍需正式结算才能成为正史。</aside>
+            </div>
+            <figure class="tutorial-visual tutorial-turn-visual">
+              <img src="./img/ui/medieval-button-frame.png" alt="中世纪操作按钮素材" />
+              <div class="tutorial-draft-card"><b>待提交操作</b><span>目标、意图、命令与影响范围</span><em>确认前可撤销</em></div>
+              <figcaption>不要连续盲点按钮；每次先读草稿和结算结果。</figcaption>
+            </figure>
+          </section>
+
+          <section class="tutorial-chapter" data-tutorial-step="5" hidden>
+            <div class="tutorial-copy">
+              <p class="tutorial-kicker">第五章 · 重塑世界</p><h3>地形画笔</h3>
+              <ol class="tutorial-checklist">
+                <li>点“改地形”展开画笔区，选择河流、支流、森林或丘陵。</li>
+                <li>设置宽度、密度、抖动与颜色，再点“开始点选”。</li>
+                <li>在地图按顺序点路径；“撤销一点”退回最后一点，“清空点”重新开始。</li>
+                <li>“复制点位”只复制坐标；“生成地形神谕”生成可审查草稿。</li>
+                <li>确认提交后，后端保存画笔、重建地图层；覆盖范围内的六边格会换成相应地形图片。</li>
+              </ol>
+              <aside class="tutorial-warning"><strong>注意：</strong>点选阶段只有临时预览。不要把自然语言猜出的地形当作已确认几何；河流闭环需让最后一点回到起点附近。</aside>
+            </div>
+            <figure class="tutorial-visual tutorial-brush-visual">
+              <img src="./img/hex-river.png" alt="河流地形格" /><img src="./img/hex-forest.png" alt="森林地形格" /><img src="./img/hex-hills.png" alt="丘陵地形格" />
+              <svg viewBox="0 0 300 100" aria-label="画笔路径示意"><path d="M15 72 Q75 8 142 58 T285 28" /><circle cx="15" cy="72" r="5" /><circle cx="142" cy="58" r="5" /><circle cx="285" cy="28" r="5" /></svg>
+              <figcaption>预览路径 → 生成草稿 → 玩家确认 → 地形单元换图。</figcaption>
+            </figure>
+          </section>
+
+          <section class="tutorial-chapter" data-tutorial-step="6" hidden>
+            <div class="tutorial-copy tutorial-copy-wide">
+              <p class="tutorial-kicker">第六章 · 速查表</p><h3>全部按钮：功能、条件与注意事项</h3>
+              <div class="tutorial-button-groups">
+                <section><h4>开局与阅读</h4><dl>
+                  <dt>使用教程</dt><dd>打开本向导；不改变存档。</dd><dt>创世填空</dt><dd>打开 WORLD-BRIEF 草稿表单；不会直接建世。</dd>
+                  <dt>生成草稿</dt><dd>把表单转成可检查文本。</dd><dt>下载 WORLD-BRIEF.md</dt><dd>下载草稿；仍需后端确认初始化。</dd>
+                  <dt>回到当前剧情</dt><dd>剧情目录定位当前场景。</dd><dt>返回当前剧情</dt><dd>阅读历史后回到最新场景。</dd>
+                </dl></section>
+                <section><h4>地图</h4><dl>
+                  <dt>缩小地图</dt><dd>按比例缩小，保持鼠标/中心锚点。</dd><dt>放大地图</dt><dd>按比例放大，最高进入 1200% 任务近景。</dd><dt>重置视角</dt><dd>恢复 70% 与默认位置。</dd>
+                </dl></section>
+                <section><h4>目标行动</h4><dl>
+                  <dt>观察</dt><dd>必须先选择目标；生成观察请求。</dd><dt>对话</dt><dd>必须先选角色；生成对话请求。</dd><dt>降下神谕</dt><dd>必须先选目标；适合改变局势的干预。</dd>
+                  <dt>创建分支</dt><dd>从选中事件创建非正史分支草稿；不要直接改写主线过去。</dd><dt>忽略此人</dt><dd>降低角色在面板中的主动打扰，不删除角色。</dd><dt>关注此人</dt><dd>提高角色关注状态，不保证每回合都出现。</dd>
+                </dl></section>
+                <section><h4>世界行动</h4><dl>
+                  <dt>推进时间</dt><dd>使用当前推进预设；可能因队列事件暂停。</dd><dt>改天气</dt><dd>填写天象覆盖，先生成请求。</dd><dt>锁定规则</dt><dd>记录玩家确认的长期世界规则。</dd><dt>改地形</dt><dd>打开画笔工作流；点选预览不等于生效。</dd>
+                </dl></section>
+                <section><h4>提交与画笔</h4><dl>
+                  <dt>确认提交 / 开始运行</dt><dd>执行当前唯一草稿；提交前务必检查目标和意图。</dd><dt>撤销草稿</dt><dd>清除尚未提交的操作，不回滚已确认正史。</dd>
+                  <dt>开始点选</dt><dd>启用地图取点；此时拖动地图会受限。</dd><dt>撤销一点</dt><dd>删除最后一个预览点。</dd><dt>清空点</dt><dd>删除全部预览点。</dd><dt>复制点位</dt><dd>复制 points-json，便于审查或复用。</dd><dt>生成地形神谕</dt><dd>把当前点位和样式转成待提交草稿。</dd>
+                </dl></section>
+              </div>
+              <aside class="tutorial-warning"><strong>注意事项：</strong>提示“请先选择目标”时先点地图旗子；提交后不要重复点击；已确认事件不能靠“撤销草稿”回滚；要改变过去请创建分支；前端只显示过滤后的玩家可见剧情，不读取 GM 秘密。</aside>
+            </div>
+          </section>
+        </div>
+
+        <footer class="tutorial-nav">
+          <button id="tutorial-prev" type="button">← 上一章</button>
+          <span id="tutorial-step-label">第 1 / 6 章</span>
+          <button id="tutorial-next" type="button">下一章 →</button>
+        </footer>
+      </form>
+    </dialog>
+    <script src="./app.js"></script>
+  </body>
+</html>
+

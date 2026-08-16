@@ -1,0 +1,322 @@
+{
+  "schema": "be-a-god.dashboard.v1",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "time": "year 1, day 12",
+  "weather": "heavy clouds over a rising river",
+  "focal_place": "Reedbend Market",
+  "current_scene": "五天里河水继续退落。河粮议席补录了新来难民，米拉带渡船队清理旧河道，塔文公布第二轮粮仓核验，老塞拉则把见证绳结写入神龛仪式。第十二日清晨，集市周围的浅滩露出一圈旧水痕，像等待河神重新落笔。",
+  "pieces": [
+    {
+      "id": "CHAR-0001",
+      "kind": "character",
+      "type": null,
+      "label": "Mira of the Ferry Rope",
+      "location": "LOC-002",
+      "status": "wandering",
+      "attention": "followed",
+      "source": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+      "x": 31.0,
+      "y": 31.0,
+      "level": "region"
+    },
+    {
+      "id": "CHAR-0002",
+      "kind": "character",
+      "type": null,
+      "label": "Tavin the Grain Counter",
+      "location": "LOC-002",
+      "status": "wandering",
+      "attention": "normal",
+      "source": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+      "x": 31.0,
+      "y": 31.0,
+      "level": "region"
+    },
+    {
+      "id": "CHAR-0003",
+      "kind": "character",
+      "type": null,
+      "label": "Old Sela of Cedar Knots",
+      "location": "LOC-001",
+      "status": "wandering",
+      "attention": "ignored",
+      "source": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+      "x": 46.0,
+      "y": 55.0,
+      "level": "region"
+    }
+  ],
+  "pins": [
+    {
+      "id": "EVT-0001",
+      "kind": "event",
+      "label": "EVT-0001 world confirmed",
+      "source": "story/main/events/EVT-0001-world-confirmed.md",
+      "target_id": null
+    },
+    {
+      "id": "EVT-0002",
+      "kind": "event",
+      "label": "EVT-0002 第一次洪水钟与临时河粮议席",
+      "source": "story/main/events/EVT-0002-第一次洪水钟与临时河粮议席.md",
+      "target_id": null
+    },
+    {
+      "id": "EVT-0003",
+      "kind": "event",
+      "label": "EVT-0003 米拉交出受损誓板",
+      "source": "story/main/events/EVT-0003-米拉交出受损誓板.md",
+      "target_id": "CHAR-0001"
+    },
+    {
+      "id": "EVT-0004",
+      "kind": "event",
+      "label": "EVT-0004 塔文核对夜间粮船",
+      "source": "story/main/events/EVT-0004-塔文核对夜间粮船.md",
+      "target_id": "CHAR-0002"
+    },
+    {
+      "id": "EVT-0005",
+      "kind": "event",
+      "label": "EVT-0005 老塞拉提出双重河誓",
+      "source": "story/main/events/EVT-0005-老塞拉提出双重河誓.md",
+      "target_id": "CHAR-0003"
+    },
+    {
+      "id": "EVT-0006",
+      "kind": "event",
+      "label": "EVT-0006 米拉建立见证绳结",
+      "source": "story/main/events/EVT-0006-米拉建立见证绳结.md",
+      "target_id": "CHAR-0001"
+    },
+    {
+      "id": "EVT-0007",
+      "kind": "event",
+      "label": "EVT-0007 第一次公开河粮审理",
+      "source": "story/main/events/EVT-0007-第一次公开河粮审理.md",
+      "target_id": "CHAR-0002"
+    }
+  ],
+  "pending_action_requests": [],
+  "advance_profile": {
+    "source": "setup/advance-profile.json",
+    "default_preset": "hybrid",
+    "presets": [
+      {
+        "id": "chronicle",
+        "mode": "chronicle",
+        "days": 30,
+        "wander": true,
+        "wander_limit": 5,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance in chronicle view and summarize ordinary background changes."
+      },
+      {
+        "id": "event-watch",
+        "mode": "event-priority",
+        "days": 90,
+        "wander": true,
+        "wander_limit": 6,
+        "stop_on_queue": true,
+        "until_next_queue": true,
+        "summary": "Advance toward the next player-worthy queued or emergent event."
+      },
+      {
+        "id": "hybrid",
+        "mode": "hybrid",
+        "days": 7,
+        "wander": true,
+        "wander_limit": 3,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance with mixed attention: current focus stays precise, background pieces may wander."
+      },
+      {
+        "id": "step",
+        "mode": "step",
+        "days": 1,
+        "wander": false,
+        "wander_limit": 0,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance one short world step."
+      }
+    ]
+  },
+  "narrative_profile": {
+    "source": "setup/narrative-profile.json",
+    "default_profile": "hybrid-historical",
+    "label": "混合模式，但偏真实历史感",
+    "default_scale": "mixed-closeup-chronicle",
+    "priority_order": [
+      "causality",
+      "world_continuity",
+      "character_agency",
+      "historical_texture",
+      "dramatic_presentation"
+    ],
+    "required_output_layers": [
+      "visible_narration",
+      "gm_summary",
+      "settlement_plan"
+    ]
+  },
+  "world_rules": {
+    "source": "setup/world-rules.json",
+    "active": []
+  },
+  "latest_random": {
+    "index": 4,
+    "ts": "2026-08-14T17:38:00.659983+00:00",
+    "purpose": "advance:ADV-20260814173800521621",
+    "kind": "wander",
+    "mode": "random",
+    "value": "LOC-001",
+    "entity_id": "CHAR-0003"
+  },
+  "random_log": {
+    "source": "story/main/random/random-log.jsonl",
+    "count": 4,
+    "latest": {
+      "index": 4,
+      "ts": "2026-08-14T17:38:00.659983+00:00",
+      "purpose": "advance:ADV-20260814173800521621",
+      "kind": "wander",
+      "mode": "random",
+      "value": "LOC-001",
+      "entity_id": "CHAR-0003"
+    },
+    "recent": [
+      {
+        "index": 4,
+        "ts": "2026-08-14T17:38:00.659983+00:00",
+        "purpose": "advance:ADV-20260814173800521621",
+        "kind": "wander",
+        "mode": "random",
+        "value": "LOC-001",
+        "entity_id": "CHAR-0003"
+      },
+      {
+        "index": 3,
+        "ts": "2026-08-14T17:38:00.659983+00:00",
+        "purpose": "advance:ADV-20260814173800521621",
+        "kind": "wander",
+        "mode": "random",
+        "value": "LOC-002",
+        "entity_id": "CHAR-0002"
+      },
+      {
+        "index": 2,
+        "ts": "2026-08-14T17:38:00.659983+00:00",
+        "purpose": "advance:ADV-20260814173800521621",
+        "kind": "wander",
+        "mode": "random",
+        "value": "LOC-002",
+        "entity_id": "CHAR-0001"
+      },
+      {
+        "index": 1,
+        "ts": "2026-08-13T13:03:36.017547+00:00",
+        "purpose": "demo opening weather",
+        "kind": "weather",
+        "mode": "override",
+        "value": "heavy clouds over a rising river",
+        "entity_id": null
+      }
+    ]
+  },
+  "attention": {
+    "followed_count": 1,
+    "ignored_count": 1,
+    "plot_ready_count": 0,
+    "followed": [
+      {
+        "id": "CHAR-0001",
+        "label": "Mira of the Ferry Rope",
+        "status": "wandering",
+        "attention": "followed",
+        "source": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md"
+      }
+    ],
+    "ignored": [
+      {
+        "id": "CHAR-0003",
+        "label": "Old Sela of Cedar Knots",
+        "status": "wandering",
+        "attention": "ignored",
+        "source": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md"
+      }
+    ],
+    "plot_ready": []
+  },
+  "story": {
+    "current": {
+      "id": "CURRENT-SCENE",
+      "title": "Reedbend Market",
+      "time": "year 1, day 12",
+      "state": "current",
+      "narrative": "五天里河水继续退落。河粮议席补录了新来难民，米拉带渡船队清理旧河道，塔文公布第二轮粮仓核验，老塞拉则把见证绳结写入神龛仪式。第十二日清晨，集市周围的浅滩露出一圈旧水痕，像等待河神重新落笔。",
+      "source": "story/main/SAVE.md"
+    },
+    "entries": [
+      {
+        "id": "EVT-0001",
+        "title": "EVT-0001 world confirmed",
+        "time": "year 1, day 1",
+        "state": "confirmed",
+        "narrative": "玩家确认了世界草案，正式世界开始存在。",
+        "source": "story/main/events/EVT-0001-world-confirmed.md"
+      },
+      {
+        "id": "EVT-0002",
+        "title": "EVT-0002 第一次洪水钟与临时河粮议席",
+        "time": "year 1, day 3",
+        "state": "confirmed",
+        "narrative": "河水漫上神龛最下层石阶时，铜钟连响三次。米拉先割断了两条系货的绳，把渡船推向低岸的棚屋；塔文抱着账板站到雨里，命人将每一罐开出的粮都刻在市场柱上。两人仍不信任彼此，却在众目睽睽下立下临时河誓：船先载人，粮按户与伤病分配，任何私取都要在洪水退后受审。",
+        "source": "story/main/events/EVT-0002-第一次洪水钟与临时河粮议席.md"
+      },
+      {
+        "id": "EVT-0003",
+        "title": "EVT-0003 米拉交出受损誓板",
+        "time": "year 1, day 3",
+        "state": "confirmed",
+        "narrative": "雨势稍缓时，米拉把神带到渡船棚后的旧桩旁。她从缠绳的空心木轴里取出半块裂开的誓板：上面还留着粮船夜间靠岸的刻痕。她没有辩解，只说那个看见搬运的人是个无家可归的孩子；若誓板当日交给神龛，孩子会先被守粮人抓走。她愿意交出证物，但请求河神先为孩子留下活路。",
+        "source": "story/main/events/EVT-0003-米拉交出受损誓板.md"
+      },
+      {
+        "id": "EVT-0004",
+        "title": "EVT-0004 塔文核对夜间粮船",
+        "time": "year 1, day 4",
+        "state": "confirmed",
+        "narrative": "塔文把湿透的誓板放在三块账板之间逐行比对。他发现缺失的不是商粮，而是本应送往西坡避难棚的救济粮。签记属于他的助手，但封泥来自粮仓守门人。塔文没有替任何人开脱，只要求审问必须公开进行。",
+        "source": "story/main/events/EVT-0004-塔文核对夜间粮船.md"
+      },
+      {
+        "id": "EVT-0005",
+        "title": "EVT-0005 老塞拉提出双重河誓",
+        "time": "year 1, day 5",
+        "state": "confirmed",
+        "narrative": "老塞拉从雪松浅滩回来时，袍角沾满淤泥。她听完誓板和账册的证词，在市场柱上划出两道线：第一道记欠给避难者的粮，第二道才记犯下偷运的人。她说，若审判先于补偿，饥饿的人只会看见权力争夺；若补偿没有审判，下一场洪水还会有人偷走同样的粮。",
+        "source": "story/main/events/EVT-0005-老塞拉提出双重河誓.md"
+      },
+      {
+        "id": "EVT-0006",
+        "title": "EVT-0006 米拉建立见证绳结",
+        "time": "year 1, day 6",
+        "state": "confirmed",
+        "narrative": "米拉把三种颜色的细绳结在同一根渡索上：白结代表孩子亲眼所见，蓝结代表誓板刻痕，红结代表账册缺口。孩子只需在老塞拉面前确认白结，姓名不写进市场账板；若日后证词受质疑，再由神龛与河粮议席共同开启封存记录。市场第一次有了不必把弱者推到人群中央的见证办法。",
+        "source": "story/main/events/EVT-0006-米拉建立见证绳结.md"
+      },
+      {
+        "id": "EVT-0007",
+        "title": "EVT-0007 第一次公开河粮审理",
+        "time": "year 1, day 7",
+        "state": "confirmed",
+        "narrative": "第十回合，雨停了。塔文宣读账册，米拉展示誓板，老塞拉解开见证绳结却不念出孩子的名字。守门人承认他拒绝按旧名册给新来的难民发粮；塔文的助手于是伪造签记，把粮夜送到棚区。议席没有把善意当作无罪，也没有把饥饿当作罪证：两人被免去配粮权，必须协助补录难民名册，并在退水后接受第二次审计。",
+        "source": "story/main/events/EVT-0007-第一次公开河粮审理.md"
+      }
+    ]
+  }
+}

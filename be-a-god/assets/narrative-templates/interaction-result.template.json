@@ -1,0 +1,28 @@
+{
+  "template": "interaction-result",
+  "schema": "be-a-god.settlement-template.v1",
+  "use_when": "A close-up character, object, or place interaction needs to become canon.",
+  "required_output": {
+    "visible_narration": "What the player sees now, concise but concrete.",
+    "summary": "One compact player-facing settlement summary.",
+    "gm_summary": "Causal memory for future turns.",
+    "settlement_plan": {
+      "event": "Event to write.",
+      "state": "Entity/location state changes.",
+      "chronicle": "Objective chronicle note.",
+      "dashboard": "Visible map/pin/piece update.",
+      "next_pressure": "One future pressure or intervention point."
+    }
+  },
+  "minimal_result_shape": {
+    "summary": "<one sentence>",
+    "visible_narration": "<short scene>",
+    "gm_summary": "<cause and consequence>",
+    "settlement_plan": {
+      "event": {"title": "<title>", "type": "interaction"},
+      "state": ["<state change>"],
+      "chronicle": "<objective record>",
+      "next_pressure": "<what may happen next>"
+    }
+  }
+}

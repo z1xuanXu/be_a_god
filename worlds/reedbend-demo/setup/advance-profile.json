@@ -1,0 +1,43 @@
+{
+  "schema": "be-a-god.advance-profile.v1",
+  "default_preset": "hybrid",
+  "presets": {
+    "step": {
+      "mode": "step",
+      "days": 1,
+      "summary": "Advance one short world step.",
+      "wander": false,
+      "wander_limit": 0,
+      "wander_exclude_ignored": false,
+      "stop_on_queue": true
+    },
+    "hybrid": {
+      "mode": "hybrid",
+      "days": 7,
+      "summary": "Advance with mixed attention: current focus stays precise, background pieces may wander.",
+      "wander": true,
+      "wander_limit": 3,
+      "wander_exclude_ignored": false,
+      "stop_on_queue": true
+    },
+    "chronicle": {
+      "mode": "chronicle",
+      "days": 30,
+      "summary": "Advance in chronicle view and summarize ordinary background changes.",
+      "wander": true,
+      "wander_limit": 5,
+      "wander_exclude_ignored": false,
+      "stop_on_queue": true
+    },
+    "event-watch": {
+      "mode": "event-priority",
+      "days": 90,
+      "summary": "Advance toward the next player-worthy queued or emergent event.",
+      "wander": true,
+      "wander_limit": 6,
+      "wander_exclude_ignored": false,
+      "stop_on_queue": true,
+      "until_next_queue": true
+    }
+  }
+}

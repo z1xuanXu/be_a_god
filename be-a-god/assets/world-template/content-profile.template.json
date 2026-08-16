@@ -1,0 +1,15 @@
+{
+  "preset": "standard",
+  "presentation": {
+    "soften_on_request": true,
+    "facts_remain_intact_when_softened": true
+  },
+  "topics": {
+    "violence": "summary",
+    "politics": "allow",
+    "religion": "allow",
+    "romance": "summary",
+    "horror": "summary"
+  },
+  "player_absolute_bans": []
+}

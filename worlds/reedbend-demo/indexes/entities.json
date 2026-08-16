@@ -1,0 +1,31 @@
+{
+  "schema": "be-a-god.entity-index.v1",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "entities": [
+    {
+      "id": "CHAR-0001",
+      "name": "Mira of the Ferry Rope",
+      "kind": "character",
+      "location": "LOC-002",
+      "status": "wandering",
+      "source": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md"
+    },
+    {
+      "id": "CHAR-0002",
+      "name": "Tavin the Grain Counter",
+      "kind": "character",
+      "location": "LOC-002",
+      "status": "wandering",
+      "source": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md"
+    },
+    {
+      "id": "CHAR-0003",
+      "name": "Old Sela of Cedar Knots",
+      "kind": "character",
+      "location": "LOC-001",
+      "status": "wandering",
+      "source": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "template": "faction-pressure",
+  "schema": "be-a-god.semantic-template.v1",
+  "use_when": "A city, clan, shrine, guild, army, or institution needs a causal pressure.",
+  "fields": {
+    "pressure_source": "character | resource | institution | environment",
+    "affected_group": "<faction or population>",
+    "scarcity_or_rule": "What constraint is forcing action.",
+    "actor_choice": "What a leader or group may choose.",
+    "direct_consequence": "Immediate result if no god intervenes.",
+    "second_order_consequence": "Longer social or ecological effect.",
+    "player_intervention_point": "Where the god can act."
+  },
+  "constraints": [
+    "Pressure must not come only from plot convenience.",
+    "At least one consequence should affect map, queue, character state, or chronicle."
+  ]
+}

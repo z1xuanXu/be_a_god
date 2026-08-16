@@ -1,0 +1,33 @@
+{
+  "schema": "be-a-god.world.v1",
+  "world_id": "reedbend-demo",
+  "title": "Reedbend Oath Demo",
+  "created_at": "2026-08-13T13:03:31.724951+00:00",
+  "status": "confirmed",
+  "active_branch": "main",
+  "creation_fields": {
+    "world_premise": "A river-market civilization survives between flood, oath, hunger, and divine attention.",
+    "starting_era": "late bronze age river basin",
+    "starting_region": "Reedbend Market",
+    "god_role": "God of River Oaths",
+    "tone": "paper-map myth with grounded historical causality",
+    "absolute_prohibitions": [],
+    "absolute_prohibitions_text": "",
+    "content_profile": "standard",
+    "content_bans": [
+      "do not eroticize coercion",
+      "do not turn famine into spectacle"
+    ]
+  },
+  "creation_field_sources": {
+    "World premise": "player-locked",
+    "Starting era": "player-locked",
+    "Starting region": "player-locked",
+    "God role": "player-locked",
+    "Tone": "polishable",
+    "Geography": "ai-fill",
+    "Starting factions": "ai-fill",
+    "profile": "player-setting",
+    "notes": "player-note"
+  }
+}

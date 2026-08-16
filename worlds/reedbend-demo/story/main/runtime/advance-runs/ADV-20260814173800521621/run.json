@@ -1,0 +1,92 @@
+{
+  "schema": "be-a-god.advance-run.v1",
+  "run_id": "ADV-20260814173800521621",
+  "branch_id": "main",
+  "from": "year 1, day 7",
+  "requested_to": "year 1, day 12",
+  "to": "year 1, day 12",
+  "requested_days": 5,
+  "advanced_days": 5,
+  "summary": "五天里河水继续退落。河粮议席补录了新来难民，米拉带渡船队清理旧河道，塔文公布第二轮粮仓核验，老塞拉则把见证绳结写入神龛仪式。第十二日清晨，集市周围的浅滩露出一圈旧水痕，像等待河神重新落笔。",
+  "paused": false,
+  "pause_event": null,
+  "advance_profile": {
+    "used": false,
+    "source": null,
+    "preset_id": null,
+    "preset": null,
+    "until_next_queue": false,
+    "original_days_before_until_next_queue": 5,
+    "resolved_next_queue_id": null,
+    "cli_overrides": {
+      "days": true,
+      "summary": true,
+      "wander": true,
+      "wander_limit": true,
+      "wander_exclude_ignored": false,
+      "ignore_queue": false
+    }
+  },
+  "wandering": {
+    "enabled": true,
+    "applies_after_advance": true,
+    "skipped_reason": null,
+    "report": {
+      "schema": "be-a-god.wander-plan.v1",
+      "status": "applied",
+      "world_id": "reedbend-demo",
+      "branch_id": "main",
+      "branch_path": "story/main",
+      "world_time": "year 1, day 12",
+      "purpose": "advance:ADV-20260814173800521621",
+      "moves": [
+        {
+          "entity_id": "CHAR-0001",
+          "entity_file": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+          "name": "Mira of the Ferry Rope",
+          "from_location": "LOC-001",
+          "to_location": "LOC-002",
+          "x": 31.0,
+          "y": 31.0,
+          "level": "region",
+          "status": "wandering",
+          "mode": "random",
+          "random_value": 60009194564702534218968427361699947497923877895122339080758317834484743387824
+        },
+        {
+          "entity_id": "CHAR-0002",
+          "entity_file": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+          "name": "Tavin the Grain Counter",
+          "from_location": "LOC-001",
+          "to_location": "LOC-002",
+          "x": 31.0,
+          "y": 31.0,
+          "level": "region",
+          "status": "wandering",
+          "mode": "random",
+          "random_value": 100993501124395916203302904618143832273495719790510795955474920732712071788216
+        },
+        {
+          "entity_id": "CHAR-0003",
+          "entity_file": "story/main/state/entities/CHAR-0003-old-sela-of-cedar-knots.md",
+          "name": "Old Sela of Cedar Knots",
+          "from_location": "LOC-002",
+          "to_location": "LOC-001",
+          "x": 46.0,
+          "y": 55.0,
+          "level": "region",
+          "status": "wandering",
+          "mode": "random",
+          "random_value": 68007304972609449025031740796804595425302602714588573982168808679792779509738
+        }
+      ],
+      "note": "mechanical wandering only; semantic motive and narration remain model/player work",
+      "refreshed": [
+        "build_indexes.py",
+        "update_map_state.py",
+        "build_file_manifest.py"
+      ]
+    }
+  },
+  "note": "mechanical time advance only; semantic events require model settlement"
+}

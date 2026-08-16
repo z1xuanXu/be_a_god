@@ -1,0 +1,26 @@
+# Python and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local runtime and browser artifacts
+*.log
+*.err.log
+.edge-preview-profile*/
+*preview*.png
+dom-dump.html
+_tmp_*.png
+
+# Secrets and machine-local configuration
+.env
+.env.*
+*.pem
+*.key
+worlds/*/setup/llm-api.config.json
+
+# Derived frontend copies are rebuilt from the template.
+worlds/*/frontend/
+!worlds/*/frontend/README.md
+
+# Demo-world creation scratch directories
+worlds/.*-demo-setup/

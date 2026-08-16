@@ -1,0 +1,150 @@
+{
+  "schema": "be-a-god.terrain-brushes.v1",
+  "brushes": [
+    {
+      "id": "DEMO-RIVER",
+      "kind": "river",
+      "label": "Rising river",
+      "level": "region",
+      "points": [
+        [
+          18.0,
+          22.0
+        ],
+        [
+          30.0,
+          31.0
+        ],
+        [
+          45.0,
+          53.0
+        ],
+        [
+          58.0,
+          66.0
+        ],
+        [
+          79.0,
+          76.0
+        ]
+      ],
+      "width": 7.0,
+      "density": 18.0,
+      "jitter": 2.0,
+      "color": "#315b76",
+      "mutable_by_divine_action": true
+    },
+    {
+      "id": "DEMO-CEDARS",
+      "kind": "forest",
+      "label": "Cedar ford grove",
+      "level": "region",
+      "points": [
+        [
+          24.0,
+          25.0
+        ],
+        [
+          29.0,
+          29.0
+        ],
+        [
+          35.0,
+          34.0
+        ],
+        [
+          39.0,
+          38.0
+        ]
+      ],
+      "width": 6.0,
+      "density": 26.0,
+      "jitter": 4.0,
+      "color": "#557542",
+      "mutable_by_divine_action": true
+    },
+    {
+      "id": "DEMO-HILLS",
+      "kind": "hills",
+      "label": "West granary hill",
+      "level": "region",
+      "points": [
+        [
+          62.0,
+          38.0
+        ],
+        [
+          68.0,
+          42.0
+        ],
+        [
+          74.0,
+          47.0
+        ]
+      ],
+      "width": 8.0,
+      "density": 15.0,
+      "jitter": 3.0,
+      "color": "#765c38",
+      "mutable_by_divine_action": true
+    },
+    {
+      "id": "BRUSH-MIRA-RING-001",
+      "kind": "river",
+      "label": "河神令一圈新河道环绕米拉所在的渡口",
+      "level": "region",
+      "points": [
+        [
+          52.0,
+          57.0
+        ],
+        [
+          50.5,
+          61.2
+        ],
+        [
+          46.5,
+          64.5
+        ],
+        [
+          41.5,
+          64.5
+        ],
+        [
+          37.5,
+          61.2
+        ],
+        [
+          36.0,
+          57.0
+        ],
+        [
+          37.5,
+          52.8
+        ],
+        [
+          41.5,
+          49.5
+        ],
+        [
+          46.5,
+          49.5
+        ],
+        [
+          50.5,
+          52.8
+        ],
+        [
+          52.0,
+          57.0
+        ]
+      ],
+      "width": 3.0,
+      "density": 32.0,
+      "jitter": 0.6,
+      "color": "#315b76",
+      "mutable_by_divine_action": true
+    }
+  ],
+  "read_policy": "terrain brush particles for frontend map only; story text not included"
+}

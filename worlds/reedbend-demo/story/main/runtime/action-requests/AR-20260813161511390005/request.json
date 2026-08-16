@@ -1,0 +1,43 @@
+{
+  "schema": "be-a-god.action-request.v1",
+  "request_id": "AR-20260813161511390005",
+  "status": "cancelled",
+  "created_at": "2026-08-13T16:15:11.390465+00:00",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "save_path": "story/main/SAVE.md",
+  "world_time": "year 1, day 1",
+  "action": "advance-time",
+  "target": {
+    "id": "reedbend-demo",
+    "kind": "world",
+    "source": ""
+  },
+  "intent": "preset:hybrid",
+  "text": "",
+  "payload": {
+    "preset": "hybrid"
+  },
+  "suggested_command_args": [
+    "scripts/advance_world.py",
+    "--world",
+    "F:\\be_a_god\\worlds\\reedbend-demo",
+    "--preset",
+    "hybrid",
+    "--confirmed"
+  ],
+  "suggested_command": "scripts/advance_world.py --world F:\\be_a_god\\worlds\\reedbend-demo --preset hybrid --confirmed",
+  "context_policy": {
+    "request_creation_reads": [
+      "ACTIVE.md",
+      "story/main/SAVE.md"
+    ],
+    "canonical_effect": "none",
+    "settlement_required": false,
+    "instruction": "Record the player's requested action first. Do not read broad story history merely to save this request."
+  },
+  "updated_at": "2026-08-13T18:29:20.323225+00:00",
+  "cancelled_at": "2026-08-13T18:29:20.323225+00:00",
+  "cancel_reason": "cancelled from frontend"
+}

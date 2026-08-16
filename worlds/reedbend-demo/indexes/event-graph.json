@@ -1,0 +1,307 @@
+{
+  "schema": "be-a-god.event-graph.v1",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "nodes": [
+    {
+      "id": "EVT-0001",
+      "key": "story/main:EVT-0001",
+      "branch_path": "story/main",
+      "title": "EVT-0001 world confirmed",
+      "type": "world-start",
+      "time": "year 1, day 1",
+      "branch_id": "main",
+      "location": null,
+      "actors": [],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "world-start"
+      ],
+      "source": "story/main/events/EVT-0001-world-confirmed.md",
+      "source_pointer": "setup/WORLD-BRIEF.md",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [],
+      "effect_refs": [],
+      "effect_notes": []
+    },
+    {
+      "id": "EVT-0002",
+      "key": "story/main:EVT-0002",
+      "branch_path": "story/main",
+      "title": "EVT-0002 第一次洪水钟与临时河粮议席",
+      "type": "flood-warning",
+      "time": "year 1, day 3",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0001",
+        "CHAR-0002"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "flood",
+        "oath",
+        "grain",
+        "institution"
+      ],
+      "source": "story/main/events/EVT-0002-第一次洪水钟与临时河粮议席.md",
+      "source_pointer": null,
+      "queue_id": "QUEUE-DEMO-FLOOD",
+      "cause_refs": [],
+      "cause_notes": [
+        "rising river",
+        "divided control of boats and grain"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "temporary river-grain council",
+        "public ration marks"
+      ]
+    },
+    {
+      "id": "EVT-0003",
+      "key": "story/main:EVT-0003",
+      "branch_path": "story/main",
+      "title": "EVT-0003 米拉交出受损誓板",
+      "type": "observation",
+      "time": "year 1, day 3",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0001"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "oath",
+        "evidence",
+        "witness"
+      ],
+      "source": "story/main/events/EVT-0003-米拉交出受损誓板.md",
+      "source_pointer": "story/main/runtime/interaction-packets/IP-20260814160943.json",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [
+        "damaged oath tablet",
+        "child witness at risk"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "evidence revealed",
+        "witness remains protected"
+      ]
+    },
+    {
+      "id": "EVT-0004",
+      "key": "story/main:EVT-0004",
+      "branch_path": "story/main",
+      "title": "EVT-0004 塔文核对夜间粮船",
+      "type": "interaction",
+      "time": "year 1, day 4",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0002"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "grain",
+        "audit",
+        "evidence"
+      ],
+      "source": "story/main/events/EVT-0004-塔文核对夜间粮船.md",
+      "source_pointer": "story/main/runtime/interaction-packets/IP-20260814161315.json",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [
+        "flood recovery",
+        "public oath"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "public audit",
+        "relief grain identified"
+      ]
+    },
+    {
+      "id": "EVT-0005",
+      "key": "story/main:EVT-0005",
+      "branch_path": "story/main",
+      "title": "EVT-0005 老塞拉提出双重河誓",
+      "type": "interaction",
+      "time": "year 1, day 5",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0003"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "shrine",
+        "oath",
+        "justice"
+      ],
+      "source": "story/main/events/EVT-0005-老塞拉提出双重河誓.md",
+      "source_pointer": "story/main/runtime/interaction-packets/IP-20260814161324.json",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [
+        "flood recovery",
+        "public oath"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "restitution procedure",
+        "public trial planned"
+      ]
+    },
+    {
+      "id": "EVT-0006",
+      "key": "story/main:EVT-0006",
+      "branch_path": "story/main",
+      "title": "EVT-0006 米拉建立见证绳结",
+      "type": "interaction",
+      "time": "year 1, day 6",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0001"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "witness",
+        "oath",
+        "institution"
+      ],
+      "source": "story/main/events/EVT-0006-米拉建立见证绳结.md",
+      "source_pointer": "story/main/runtime/interaction-packets/IP-20260814161334.json",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [
+        "flood recovery",
+        "public oath"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "witness protection",
+        "evidence preserved"
+      ]
+    },
+    {
+      "id": "EVT-0007",
+      "key": "story/main:EVT-0007",
+      "branch_path": "story/main",
+      "title": "EVT-0007 第一次公开河粮审理",
+      "type": "interaction",
+      "time": "year 1, day 7",
+      "branch_id": "main",
+      "location": "LOC-001",
+      "actors": [
+        "CHAR-0002"
+      ],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "hearing",
+        "grain",
+        "refugees",
+        "institution"
+      ],
+      "source": "story/main/events/EVT-0007-第一次公开河粮审理.md",
+      "source_pointer": "story/main/runtime/interaction-packets/IP-20260814161344.json",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [
+        "flood recovery",
+        "public oath"
+      ],
+      "effect_refs": [],
+      "effect_notes": [
+        "hearing completed",
+        "officials removed",
+        "refugees registered"
+      ]
+    }
+  ],
+  "links": [],
+  "by_actor": {
+    "CHAR-0001": [
+      "EVT-0002",
+      "EVT-0003",
+      "EVT-0006"
+    ],
+    "CHAR-0002": [
+      "EVT-0002",
+      "EVT-0004",
+      "EVT-0007"
+    ],
+    "CHAR-0003": [
+      "EVT-0005"
+    ]
+  },
+  "by_location": {
+    "LOC-001": [
+      "EVT-0002",
+      "EVT-0003",
+      "EVT-0004",
+      "EVT-0005",
+      "EVT-0006",
+      "EVT-0007"
+    ]
+  },
+  "by_tag": {
+    "audit": [
+      "EVT-0004"
+    ],
+    "evidence": [
+      "EVT-0003",
+      "EVT-0004"
+    ],
+    "flood": [
+      "EVT-0002"
+    ],
+    "grain": [
+      "EVT-0002",
+      "EVT-0004",
+      "EVT-0007"
+    ],
+    "hearing": [
+      "EVT-0007"
+    ],
+    "institution": [
+      "EVT-0002",
+      "EVT-0006",
+      "EVT-0007"
+    ],
+    "justice": [
+      "EVT-0005"
+    ],
+    "oath": [
+      "EVT-0002",
+      "EVT-0003",
+      "EVT-0005",
+      "EVT-0006"
+    ],
+    "refugees": [
+      "EVT-0007"
+    ],
+    "shrine": [
+      "EVT-0005"
+    ],
+    "witness": [
+      "EVT-0003",
+      "EVT-0006"
+    ],
+    "world-start": [
+      "EVT-0001"
+    ]
+  },
+  "unresolved_refs": []
+}

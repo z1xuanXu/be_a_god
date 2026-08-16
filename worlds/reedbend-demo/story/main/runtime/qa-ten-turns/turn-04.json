@@ -1,0 +1,53 @@
+{
+  "summary": "塔文用账板确认受损誓板记载的是一批未入账的救济粮。",
+  "visible_narration": "塔文把湿透的誓板放在三块账板之间逐行比对。他发现缺失的不是商粮，而是本应送往西坡避难棚的救济粮。签记属于他的助手，但封泥来自粮仓守门人。塔文没有替任何人开脱，只要求审问必须公开进行。",
+  "gm_summary": "证物与账册相互印证；塔文选择公开核验，调查从个人猜疑转为可审计的制度程序。",
+  "settlement_plan": {
+    "event": {
+      "title": "塔文核对夜间粮船",
+      "type": "interaction"
+    },
+    "state": "塔文确认未入账救济粮的存在，并要求所有审问和账目核验公开进行。",
+    "chronicle": "洪水后第四日，粮食偷运由传闻变成可核验的公开案件。",
+    "player_intervention_point": "河神仍可改变新制度的执行方式。"
+  },
+  "event": {
+    "title": "塔文核对夜间粮船",
+    "type": "interaction",
+    "location": "LOC-001",
+    "actors": [
+      "CHAR-0002"
+    ],
+    "causes": [
+      "flood recovery",
+      "public oath"
+    ],
+    "effects": [
+      "public audit",
+      "relief grain identified"
+    ],
+    "tags": [
+      "grain",
+      "audit",
+      "evidence"
+    ]
+  },
+  "consequences": "塔文确认未入账救济粮的存在，并要求所有审问和账目核验公开进行。",
+  "chronicle": "洪水后第四日，粮食偷运由传闻变成可核验的公开案件。",
+  "current_scene": "塔文用账板确认受损誓板记载的是一批未入账的救济粮。",
+  "state_appends": [
+    {
+      "path": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+      "text": "塔文确认未入账救济粮的存在，并要求所有审问和账目核验公开进行。"
+    }
+  ],
+  "dashboard": {
+    "piece_updates": [
+      {
+        "id": "CHAR-0002",
+        "status": "plot-ready"
+      }
+    ]
+  },
+  "timeline_label": "塔文核对夜间粮船"
+}

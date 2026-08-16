@@ -1,0 +1,96 @@
+{
+  "schema": "be-a-god.narrative-profile.v1",
+  "default_profile": "hybrid-historical",
+  "profiles": {
+    "hybrid-historical": {
+      "label": "混合模式，但偏真实历史感",
+      "summary": "近景角色有戏，长期文明自然演化；AI 优先因果、制度、资源、人物能动性和可落盘后果，不强行制造爽点。",
+      "priority_order": [
+        "causality",
+        "world_continuity",
+        "character_agency",
+        "historical_texture",
+        "dramatic_presentation"
+      ],
+      "balance": {
+        "default_scale": "mixed-closeup-chronicle",
+        "close_scene_weight": 0.45,
+        "chronicle_weight": 0.55,
+        "stop_for_player_worthy_events": true
+      },
+      "principles": [
+        "先模拟世界，再包装叙事。",
+        "神谕进入因果链，不把后果藏在旁白里。",
+        "角色有欲望、误解、资源限制和关系压力，不只是剧情工具。",
+        "长期变化通过编年史、指标和事件链呈现；短期交互通过近景场面呈现。",
+        "不为了戏剧性无视地理、粮食、合法性、信仰、恐惧、制度惯性和信息传播限制。",
+        "玩家只看当前需要看的内容；旧事通过 source pointers 精准回溯。"
+      ],
+      "output_layers": {
+        "required": [
+          "visible_narration",
+          "gm_summary",
+          "settlement_plan"
+        ],
+        "visible_narration": "玩家直接看到的场景或编年史文本。",
+        "gm_summary": "给下一轮使用的紧凑因果摘要。",
+        "settlement_plan": "可交给脚本落盘的事件、状态、编年史、队列或地图变更计划。"
+      },
+      "event_pressure_sources": [
+        "character",
+        "resource",
+        "institution",
+        "environment"
+      ],
+      "event_chain": [
+        "pressure",
+        "actor_choice",
+        "direct_consequence",
+        "second_order_consequence",
+        "player_intervention_point"
+      ],
+      "character_fields": {
+        "required": [
+          "desire",
+          "fear",
+          "misunderstanding",
+          "resources",
+          "relationships",
+          "secret",
+          "god_view"
+        ]
+      },
+      "social_indicators": [
+        "faith",
+        "stability",
+        "food_pressure",
+        "war_pressure",
+        "legitimacy",
+        "fear",
+        "culture_change"
+      ],
+      "scale_rules": {
+        "closeup": "对话、抉择、冲突和神谕响应；只读目标相关 packet 和必要 source pointers。",
+        "regional": "迁徙、饥荒、制度变化、宗教传播、局部战争；用事件链和时间线节点表达。",
+        "chronicle": "跨月或跨年变化；少写对白，多写可检验的趋势、代价和后果。"
+      },
+      "style": {
+        "tone": "克制、具体、带历史质感",
+        "prefer": [
+          "因果清楚",
+          "物资和制度约束",
+          "人物利益冲突",
+          "神谕后的二阶后果",
+          "可写入事件或状态的结果"
+        ],
+        "avoid": [
+          "无代价爽点",
+          "模糊史诗腔",
+          "角色突然失去能动性",
+          "只用命运、古老、回响等词替代具体原因",
+          "没有落盘计划的长篇铺陈"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "be-a-god.map-hierarchy.v1",
+  "levels": [
+    "world",
+    "region",
+    "scene"
+  ],
+  "nodes": [
+    {
+      "id": "LOC-001",
+      "name": "Reedbend Market",
+      "level": "region"
+    },
+    {
+      "id": "LOC-002",
+      "name": "Cedar Shrine Ford",
+      "level": "region"
+    },
+    {
+      "id": "LOC-003",
+      "name": "West Hill Granary",
+      "level": "region"
+    }
+  ]
+}

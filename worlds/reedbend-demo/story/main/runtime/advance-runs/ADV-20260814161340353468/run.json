@@ -1,0 +1,37 @@
+{
+  "schema": "be-a-god.advance-run.v1",
+  "run_id": "ADV-20260814161340353468",
+  "branch_id": "main",
+  "from": "year 1, day 6",
+  "requested_to": "year 1, day 7",
+  "to": "year 1, day 7",
+  "requested_days": 1,
+  "advanced_days": 1,
+  "summary": "补偿粮已发出大半，市场柱旁聚集的人群开始等待正式审理。",
+  "paused": false,
+  "pause_event": null,
+  "advance_profile": {
+    "used": false,
+    "source": null,
+    "preset_id": null,
+    "preset": null,
+    "until_next_queue": false,
+    "original_days_before_until_next_queue": 1,
+    "resolved_next_queue_id": null,
+    "cli_overrides": {
+      "days": true,
+      "summary": true,
+      "wander": true,
+      "wander_limit": false,
+      "wander_exclude_ignored": false,
+      "ignore_queue": false
+    }
+  },
+  "wandering": {
+    "enabled": false,
+    "applies_after_advance": false,
+    "skipped_reason": null,
+    "report": null
+  },
+  "note": "mechanical time advance only; semantic events require model settlement"
+}

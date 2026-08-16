@@ -1,0 +1,22 @@
+{
+  "template": "divine-intervention-result",
+  "schema": "be-a-god.settlement-template.v1",
+  "use_when": "The player directly changes nature, minds, rules, luck, terrain, or fate.",
+  "required_output": {
+    "visible_narration": "Immediate sensory or social effect.",
+    "summary": "What the god changed.",
+    "gm_summary": "Power, cost, witness, and continuity consequence.",
+    "settlement_plan": {
+      "changed_fact": "Canon change if any.",
+      "state": "Affected entities/locations.",
+      "map": "Brush, weather, or piece movement if relevant.",
+      "chronicle": "Objective divine intervention note.",
+      "reaction": "How mortals reinterpret the world."
+    }
+  },
+  "constraints": [
+    "Do not use cost as punishment by default; use causality.",
+    "If the player has absolute authority, record consequences rather than blocking the act.",
+    "If no durable consequence exists, keep it as support narration rather than canon settlement."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "summary": "洪水钟响后，米拉与塔文同意以渡船优先救人、粮仓按公开刻痕配粮，市场成立临时河粮议席。",
+  "visible_narration": "河水漫上神龛最下层石阶时，铜钟连响三次。米拉先割断了两条系货的绳，把渡船推向低岸的棚屋；塔文抱着账板站到雨里，命人将每一罐开出的粮都刻在市场柱上。两人仍不信任彼此，却在众目睽睽下立下临时河誓：船先载人，粮按户与伤病分配，任何私取都要在洪水退后受审。",
+  "gm_summary": "环境压力来自上涨河水，制度压力来自船权与粮权分离；米拉选择先救人，塔文选择公开账目，直接后果是市场避免争船，次生后果是临时河粮议席获得合法性。",
+  "settlement_plan": {
+    "event": {"title": "第一次洪水钟与临时河粮议席", "type": "flood-warning"},
+    "queue": {"settle_current": true},
+    "state": "米拉与塔文建立公开的应急协作。",
+    "chronicle": "洪水钟之日，芦湾市场首次以公开刻痕共同管理渡船与粮食。",
+    "player_intervention_point": "神可以认可、改变或撤销这份临时河誓。"
+  },
+  "event": {
+    "title": "第一次洪水钟与临时河粮议席",
+    "type": "flood-warning",
+    "time": "year 1, day 3",
+    "location": "LOC-001",
+    "actors": ["CHAR-0001", "CHAR-0002"],
+    "causes": ["rising river", "divided control of boats and grain"],
+    "effects": ["temporary river-grain council", "public ration marks"],
+    "tags": ["flood", "oath", "grain", "institution"]
+  },
+  "consequences": "市场暂时避免了争船与抢粮；河粮议席将在退水后接受审计。",
+  "chronicle": "洪水钟之日，芦湾市场首次以公开刻痕共同管理渡船与粮食。",
+  "current_scene": "洪水钟声落下，米拉与塔文站在刻满配粮记号的市场柱旁，等待下一次水位变化。",
+  "save_updates": {"current_scene": "洪水钟声落下，米拉与塔文站在刻满配粮记号的市场柱旁，等待下一次水位变化。", "focal_place": "Reedbend Market"},
+  "state_appends": [
+    {"path": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md", "text": "第一次洪水钟时，米拉公开承诺渡船优先载人，并与塔文共同组成临时河粮议席。"},
+    {"path": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md", "text": "第一次洪水钟时，塔文将配粮记录公开刻在市场柱上，并与米拉共同组成临时河粮议席。"}
+  ],
+  "dashboard": {"piece_updates": [{"id": "CHAR-0001", "status": "followed"}, {"id": "CHAR-0002", "status": "plot-ready"}]},
+  "timeline_label": "第一次洪水钟：河粮议席成立"
+}

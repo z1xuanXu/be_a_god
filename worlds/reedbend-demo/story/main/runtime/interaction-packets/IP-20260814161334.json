@@ -1,0 +1,164 @@
+{
+  "schema": "be-a-god.interaction-packet.v1",
+  "packet_id": "IP-20260814161334",
+  "request_id": "AR-20260814161332442529",
+  "created_at": "2026-08-14T16:13:34.565492+00:00",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "player_intent": "inspire Mira to protect the child witness without hiding evidence",
+  "action_request": {
+    "request_id": "AR-20260814161332442529",
+    "status": "requested",
+    "action": "intervene",
+    "intent": "inspire Mira to protect the child witness without hiding evidence",
+    "source": "story/main/runtime/action-requests/AR-20260814161332442529/request.json"
+  },
+  "interaction": {
+    "target_id": "CHAR-0001",
+    "target_kind": "character",
+    "mode": "intervene"
+  },
+  "scene": {
+    "world_time": "year 1, day 6",
+    "focal_place": "Reedbend Market",
+    "current_scene": "河水退到下层石阶以下，西坡避难棚收到第一批补发粮食。",
+    "current_summary": "# CURRENT\n\n河水退到下层石阶以下，西坡避难棚收到第一批补发粮食。\n"
+  },
+  "player": {
+    "summary": "# PLAYER\n\n- god_role: God of River Oaths\n- power_mode: hybrid\n- timeline_display: vertical\n\n## Content profile summary\n\n- content_profile: setup/content-profile.json\n- content_preset: standard\n- content_absolute_bans: do not eroticize coercion; do not turn famine into spectacle\n- content_absolute_bans_count: 2\n\n## Advance profile summary\n\n- advance_profile: setup/advance-profile.json\n- advance_default_preset: hybrid\n- advance_default_mode: hybrid\n- advance_default_days: 7\n- advance_default_wander: True\n- advance_default_stop_on_queue: True\n\n## Narrative profile summary\n\n- narrative_profile: setup/narrative-profile.json\n- narrative_default_profile: hybrid-historical\n- narrative_default_scale: mixed-closeup-chronicle\n- narrative_priority: causality > world_continuity > character_agency > historical_texture > dramatic_presentation\n- narrative_required_output_layers: visible_narration, gm_summary, settlement_plan\n"
+  },
+  "world_rules": {
+    "source": "setup/world-rules.json",
+    "canon_source": "CANON.md",
+    "active": []
+  },
+  "narrative_profile": {
+    "source": "setup/narrative-profile.json",
+    "default_profile": "hybrid-historical",
+    "label": "混合模式，但偏真实历史感",
+    "default_scale": "mixed-closeup-chronicle",
+    "priority_order": [
+      "causality",
+      "world_continuity",
+      "character_agency",
+      "historical_texture",
+      "dramatic_presentation"
+    ],
+    "required_output_layers": [
+      "visible_narration",
+      "gm_summary",
+      "settlement_plan"
+    ],
+    "event_pressure_sources": [
+      "character",
+      "resource",
+      "institution",
+      "environment"
+    ],
+    "event_chain": [
+      "pressure",
+      "actor_choice",
+      "direct_consequence",
+      "second_order_consequence",
+      "player_intervention_point"
+    ],
+    "style_avoid": [
+      "无代价爽点",
+      "模糊史诗腔",
+      "角色突然失去能动性",
+      "只用命运、古老、回响等词替代具体原因",
+      "没有落盘计划的长篇铺陈"
+    ]
+  },
+  "target": {
+    "file": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+    "document": "# CHAR-0001 Mira of the Ferry Rope\n\n- schema: be-a-god.entity-card.v1\n- id: CHAR-0001\n- kind: character\n- public_name: Mira of the Ferry Rope\n- branch_id: main\n- status: plot-ready\n- attention: followed\n- summary: Young ferry heir trying to keep the ford open without angering the shrine.\n- location: LOC-001\n- x: 44\n- y: 57\n- level: region\n- source: demo-world\n\n## Public state\n\nMira stands near the market quay with wet rope burns on both palms.\n\n## Model semantic draft\n\nThe language model may generate or revise this section; the script only stores it.\n\n```json\n{\n  \"desire\": \"secure ferry rights before the flood peaks\",\n  \"fear\": \"the shrine will blame her family for broken oaths\",\n  \"misunderstanding\": \"believes the grain counters control the missing tablets\",\n  \"resources\": [\n    \"ferry crew\",\n    \"river knowledge\",\n    \"public sympathy\"\n  ],\n  \"relationships\": {\n    \"CHAR-0002\": \"public rival\",\n    \"CHAR-0003\": \"quietly trusts\"\n  },\n  \"secret\": \"hid one damaged oath tablet to protect a child witness\",\n  \"god_view\": \"She will bargain honestly if the player asks directly.\"\n}\n```\n\n\n## Queued event update\n\n第一次洪水钟时，米拉公开承诺渡船优先载人，并与塔文共同组成临时河粮议席。\n\n\n## Interaction update\n\n米拉已向河神交出受损誓板，并说明她藏匿证物是为了保护一名孩子目击者。\n",
+    "dashboard_state": {
+      "source": "dashboard.data.pieces",
+      "data": {
+        "id": "CHAR-0001",
+        "kind": "character",
+        "label": "Mira of the Ferry Rope",
+        "location": "LOC-001",
+        "status": "plot-ready",
+        "attention": "followed",
+        "source": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+        "x": 44.0,
+        "y": 57.0,
+        "level": "region"
+      }
+    },
+    "candidate_count": 1
+  },
+  "context_policy": {
+    "allowed_sources": [
+      {
+        "path": "ACTIVE.md",
+        "reason": "active world and branch pointer"
+      },
+      {
+        "path": "story/main/SAVE.md",
+        "reason": "active branch compact save"
+      },
+      {
+        "path": "story/main/CURRENT.md",
+        "reason": "current immediate scene"
+      },
+      {
+        "path": "PLAYER.md",
+        "reason": "player god settings and display preference"
+      },
+      {
+        "path": "setup/world-rules.json",
+        "reason": "active player-confirmed world rules"
+      },
+      {
+        "path": "setup/narrative-profile.json",
+        "reason": "compact narrative quality profile"
+      },
+      {
+        "path": "story/main/state/entities/CHAR-0001-mira-of-the-ferry-rope.md",
+        "reason": "clicked target card"
+      }
+    ],
+    "forbidden_sources": [
+      "story/*/chapters/**",
+      "story/*/events/** except explicitly listed event pointers",
+      "story/*/branches/** except active parent chain when branch inheritance is required",
+      "sibling branches",
+      "random/random-log.jsonl except when the interaction directly audits a random result"
+    ],
+    "source_budget": 7,
+    "requested_source_budget": 6,
+    "knowledge_boundary": "Use only packet content and allowed source pointers unless followup_source_request is approved.",
+    "must_not_do": [
+      "Do not read full chapters before a simple interaction.",
+      "Do not scan sibling branches.",
+      "Do not settle canonical consequences in this packet step.",
+      "Do not let non-omniscient characters use player-only knowledge.",
+      "Do not ignore the supplied narrative profile when resolving meaningful events."
+    ]
+  },
+  "followup_source_request": {
+    "needed": false,
+    "reason": null,
+    "requested_sources": [],
+    "trigger_conditions": [
+      "old promise, curse, oath, or debt is invoked",
+      "hidden identity or secret knowledge matters",
+      "death, succession, war, branch inheritance, or irreversible action is touched",
+      "player explicitly asks for recap or audit"
+    ]
+  },
+  "settlement_hint": {
+    "after_narration_run": "settle_interaction.py",
+    "expected_outputs": [
+      "event node",
+      "entity/location state update if changed",
+      "objective chronicle entry if formal event occurred",
+      "timeline/dashboard rebuild",
+      "file manifest refresh"
+    ]
+  }
+}

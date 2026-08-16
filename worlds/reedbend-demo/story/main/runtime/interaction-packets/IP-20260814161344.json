@@ -1,0 +1,164 @@
+{
+  "schema": "be-a-god.interaction-packet.v1",
+  "packet_id": "IP-20260814161344",
+  "request_id": "AR-20260814161342375954",
+  "created_at": "2026-08-14T16:13:44.390487+00:00",
+  "world_id": "reedbend-demo",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "player_intent": "convene the first public river-grain hearing",
+  "action_request": {
+    "request_id": "AR-20260814161342375954",
+    "status": "requested",
+    "action": "speak",
+    "intent": "convene the first public river-grain hearing",
+    "source": "story/main/runtime/action-requests/AR-20260814161342375954/request.json"
+  },
+  "interaction": {
+    "target_id": "CHAR-0002",
+    "target_kind": "character",
+    "mode": "dialogue"
+  },
+  "scene": {
+    "world_time": "year 1, day 7",
+    "focal_place": "Reedbend Market",
+    "current_scene": "补偿粮已发出大半，市场柱旁聚集的人群开始等待正式审理。",
+    "current_summary": "# CURRENT\n\n补偿粮已发出大半，市场柱旁聚集的人群开始等待正式审理。\n"
+  },
+  "player": {
+    "summary": "# PLAYER\n\n- god_role: God of River Oaths\n- power_mode: hybrid\n- timeline_display: vertical\n\n## Content profile summary\n\n- content_profile: setup/content-profile.json\n- content_preset: standard\n- content_absolute_bans: do not eroticize coercion; do not turn famine into spectacle\n- content_absolute_bans_count: 2\n\n## Advance profile summary\n\n- advance_profile: setup/advance-profile.json\n- advance_default_preset: hybrid\n- advance_default_mode: hybrid\n- advance_default_days: 7\n- advance_default_wander: True\n- advance_default_stop_on_queue: True\n\n## Narrative profile summary\n\n- narrative_profile: setup/narrative-profile.json\n- narrative_default_profile: hybrid-historical\n- narrative_default_scale: mixed-closeup-chronicle\n- narrative_priority: causality > world_continuity > character_agency > historical_texture > dramatic_presentation\n- narrative_required_output_layers: visible_narration, gm_summary, settlement_plan\n"
+  },
+  "world_rules": {
+    "source": "setup/world-rules.json",
+    "canon_source": "CANON.md",
+    "active": []
+  },
+  "narrative_profile": {
+    "source": "setup/narrative-profile.json",
+    "default_profile": "hybrid-historical",
+    "label": "混合模式，但偏真实历史感",
+    "default_scale": "mixed-closeup-chronicle",
+    "priority_order": [
+      "causality",
+      "world_continuity",
+      "character_agency",
+      "historical_texture",
+      "dramatic_presentation"
+    ],
+    "required_output_layers": [
+      "visible_narration",
+      "gm_summary",
+      "settlement_plan"
+    ],
+    "event_pressure_sources": [
+      "character",
+      "resource",
+      "institution",
+      "environment"
+    ],
+    "event_chain": [
+      "pressure",
+      "actor_choice",
+      "direct_consequence",
+      "second_order_consequence",
+      "player_intervention_point"
+    ],
+    "style_avoid": [
+      "无代价爽点",
+      "模糊史诗腔",
+      "角色突然失去能动性",
+      "只用命运、古老、回响等词替代具体原因",
+      "没有落盘计划的长篇铺陈"
+    ]
+  },
+  "target": {
+    "file": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+    "document": "# CHAR-0002 Tavin the Grain Counter\n\n- schema: be-a-god.entity-card.v1\n- id: CHAR-0002\n- kind: character\n- public_name: Tavin the Grain Counter\n- branch_id: main\n- status: ordinary\n- attention: normal\n- summary: A careful clerk whose ledgers can feed the town or expose theft.\n- location: LOC-001\n- x: 53\n- y: 54\n- level: region\n- source: demo-world\n\n## Public state\n\nTavin counts jars under a red awning and avoids looking at the river.\n\n## Model semantic draft\n\nThe language model may generate or revise this section; the script only stores it.\n\n```json\n{\n  \"desire\": \"prove the granary losses are not his fault\",\n  \"fear\": \"a public accusation before the flood audit\",\n  \"misunderstanding\": \"thinks Mira wants to seize grain transport fees\",\n  \"resources\": [\n    \"ledger tablets\",\n    \"two guards\",\n    \"access to sealed grain rooms\"\n  ],\n  \"relationships\": {\n    \"CHAR-0001\": \"rival\",\n    \"CHAR-0003\": \"ritual superior\"\n  },\n  \"secret\": \"his assistant falsified one delivery to feed refugees\",\n  \"god_view\": \"He responds to evidence, not intimidation.\"\n}\n```\n\n\n## Queued event update\n\n第一次洪水钟时，塔文将配粮记录公开刻在市场柱上，并与米拉共同组成临时河粮议席。\n\n\n## Interaction update\n\n塔文确认未入账救济粮的存在，并要求所有审问和账目核验公开进行。\n",
+    "dashboard_state": {
+      "source": "dashboard.data.pieces",
+      "data": {
+        "id": "CHAR-0002",
+        "kind": "character",
+        "label": "Tavin the Grain Counter",
+        "location": "LOC-001",
+        "status": "plot-ready",
+        "attention": "normal",
+        "source": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+        "x": 53.0,
+        "y": 54.0,
+        "level": "region"
+      }
+    },
+    "candidate_count": 1
+  },
+  "context_policy": {
+    "allowed_sources": [
+      {
+        "path": "ACTIVE.md",
+        "reason": "active world and branch pointer"
+      },
+      {
+        "path": "story/main/SAVE.md",
+        "reason": "active branch compact save"
+      },
+      {
+        "path": "story/main/CURRENT.md",
+        "reason": "current immediate scene"
+      },
+      {
+        "path": "PLAYER.md",
+        "reason": "player god settings and display preference"
+      },
+      {
+        "path": "setup/world-rules.json",
+        "reason": "active player-confirmed world rules"
+      },
+      {
+        "path": "setup/narrative-profile.json",
+        "reason": "compact narrative quality profile"
+      },
+      {
+        "path": "story/main/state/entities/CHAR-0002-tavin-the-grain-counter.md",
+        "reason": "clicked target card"
+      }
+    ],
+    "forbidden_sources": [
+      "story/*/chapters/**",
+      "story/*/events/** except explicitly listed event pointers",
+      "story/*/branches/** except active parent chain when branch inheritance is required",
+      "sibling branches",
+      "random/random-log.jsonl except when the interaction directly audits a random result"
+    ],
+    "source_budget": 7,
+    "requested_source_budget": 6,
+    "knowledge_boundary": "Use only packet content and allowed source pointers unless followup_source_request is approved.",
+    "must_not_do": [
+      "Do not read full chapters before a simple interaction.",
+      "Do not scan sibling branches.",
+      "Do not settle canonical consequences in this packet step.",
+      "Do not let non-omniscient characters use player-only knowledge.",
+      "Do not ignore the supplied narrative profile when resolving meaningful events."
+    ]
+  },
+  "followup_source_request": {
+    "needed": false,
+    "reason": null,
+    "requested_sources": [],
+    "trigger_conditions": [
+      "old promise, curse, oath, or debt is invoked",
+      "hidden identity or secret knowledge matters",
+      "death, succession, war, branch inheritance, or irreversible action is touched",
+      "player explicitly asks for recap or audit"
+    ]
+  },
+  "settlement_hint": {
+    "after_narration_run": "settle_interaction.py",
+    "expected_outputs": [
+      "event node",
+      "entity/location state update if changed",
+      "objective chronicle entry if formal event occurred",
+      "timeline/dashboard rebuild",
+      "file manifest refresh"
+    ]
+  }
+}
