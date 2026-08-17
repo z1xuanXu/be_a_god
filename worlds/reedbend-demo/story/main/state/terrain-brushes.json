@@ -146,5 +146,5 @@
       "mutable_by_divine_action": true
     }
   ],
-  "read_policy": "terrain brush particles for frontend map only; story text not included"
+  "read_policy": "terrain brush data only; story text not included"
 }

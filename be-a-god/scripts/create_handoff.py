@@ -168,10 +168,10 @@ def build_handoff(world: Path, handoff_id: str, max_events: int, max_chronicle_l
             "random_log_path": f"{active['branch_path']}/random/random-log.jsonl",
             "random_log_entries": count_jsonl(branch / "random" / "random-log.jsonl"),
         },
-        "frontend": {
+        "derived_data": {
             "dashboard": "dashboard/data.json",
             "timeline": "dashboard/timeline.json",
-            "frontend_folder": "frontend/index.html",
+            "map_layers": "dashboard/map-layers.json",
         },
         "resume_rules": [
             "Read the first_read files before continuing.",

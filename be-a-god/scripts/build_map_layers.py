@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build lightweight semantic map layers for the frontend."""
+"""Build lightweight semantic map layers for local script inspection."""
 
 from __future__ import annotations
 
@@ -112,7 +112,7 @@ def main() -> int:
         "brushes": brushes,
         "terrain_zones": hierarchy.get("terrain_zones", []),
         "map_generation": load_json(world / "base" / "maps" / "hierarchy.json", {}).get("map_generation", {"status": "pending", "source": "missing"}),
-        "read_policy": "frontend map layers only; story text not included",
+        "read_policy": "derived map data only; story text not included",
     }
     if args.dry_run:
         print(json.dumps(merged, ensure_ascii=False, indent=2))

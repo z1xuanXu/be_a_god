@@ -268,5 +268,10 @@
       "source": "story/main/state/terrain-brushes.json"
     }
   ],
-  "read_policy": "frontend map layers only; story text not included"
+  "terrain_zones": [],
+  "map_generation": {
+    "status": "pending",
+    "source": "missing"
+  },
+  "read_policy": "derived map data only; story text not included"
 }

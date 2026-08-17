@@ -32,5 +32,5 @@
     "source": "setup/WORLD-BRIEF.md",
     "method": "confirmed-brief-keyword-seed"
   },
-  "read_policy": "terrain brush particles for frontend map only; story text not included"
+  "read_policy": "terrain brush data only; story text not included"
 }

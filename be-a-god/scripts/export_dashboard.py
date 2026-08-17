@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export lightweight dashboard data for map, pieces, pins, and status panels."""
+"""Export lightweight derived world data for scripts and host inspection."""
 
 from __future__ import annotations
 
@@ -439,7 +439,7 @@ def build_dashboard(world: Path) -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Export lightweight frontend dashboard data.")
+    parser = argparse.ArgumentParser(description="Export lightweight derived world data.")
     parser.add_argument("--world", required=True)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

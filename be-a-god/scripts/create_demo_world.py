@@ -173,7 +173,7 @@ def create_demo(args: argparse.Namespace) -> dict:
             "1 pending action request",
             "weather random log",
             "mutable river/forest/hill terrain brushes",
-            "prepared frontend files",
+            "derived map and timeline data",
         ],
     }
     if args.dry_run:
@@ -345,18 +345,15 @@ Immediate playable choices:
     run([script("build_timeline.py"), "--world", str(world)])
     run([script("export_dashboard.py"), "--world", str(world)])
     run([script("build_map_layers.py"), "--world", str(world)])
-    run([script("prepare_frontend.py"), "--world", str(world), "--confirmed"])
     run([script("build_file_manifest.py"), str(world)])
     validation = json.loads(run([script("validate_world.py"), "--world", str(world), "--json"]).stdout)
     if not validation.get("ok"):
         raise SystemExit(json.dumps(validation, ensure_ascii=False, indent=2))
 
-    plan["frontend"] = str(world / "frontend" / "index.html")
     plan["first_actions"] = [
-        "Open frontend/index.html",
-        "Click CHAR-0001",
+        "Inspect CHAR-0001 through an interaction packet",
         "Inspect timeline queue QUEUE-DEMO-FLOOD",
-        "Try terrain brush editor on a tributary",
+        "Create a reviewed terrain-brush action request",
         "Advance to the flood bell",
     ]
     return plan

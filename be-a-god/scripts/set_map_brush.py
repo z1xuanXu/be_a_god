@@ -110,7 +110,7 @@ def main() -> int:
     brush_id = validate_id(args.brush_id, "--brush-id")
     path = world / branch_path / "state" / "terrain-brushes.json"
     base_path = world / "base" / "maps" / "terrain-brushes.json"
-    data = read_json(path, {"schema": "be-a-god.terrain-brushes.v1", "brushes": [], "read_policy": "terrain brush particles for frontend map only; story text not included"})
+    data = read_json(path, {"schema": "be-a-god.terrain-brushes.v1", "brushes": [], "read_policy": "terrain brush data only; story text not included"})
     brushes = data.setdefault("brushes", [])
     if not isinstance(brushes, list):
         raise SystemExit("terrain-brushes.json `brushes` must be a list")
@@ -168,7 +168,7 @@ def main() -> int:
             existing.clear()
             existing.update(brush)
     data["schema"] = "be-a-god.terrain-brushes.v1"
-    data["read_policy"] = "terrain brush particles for frontend map only; story text not included"
+    data["read_policy"] = "terrain brush data only; story text not included"
     write_json(path, data)
     ran = refresh(world)
     print(json.dumps({"ok": True, "brush_id": brush_id, "terrain_brushes": f"{branch_path}/state/terrain-brushes.json", "refreshed": ran}, ensure_ascii=False, indent=2))

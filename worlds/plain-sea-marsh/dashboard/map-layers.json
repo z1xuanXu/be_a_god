@@ -170,5 +170,5 @@
     "source": "setup/WORLD-BRIEF.md",
     "method": "confirmed-brief-keyword-seed"
   },
-  "read_policy": "frontend map layers only; story text not included"
+  "read_policy": "derived map data only; story text not included"
 }

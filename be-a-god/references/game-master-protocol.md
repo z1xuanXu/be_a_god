@@ -64,11 +64,11 @@ Use `scripts/set_world_rule.py` when the player explicitly defines, changes, rev
 
 Treat active world rules as higher priority than generated events or random outcomes. If a requested action would violate a rule, surface the conflict and ask for explicit override, revision, or branching. Do not silently reinterpret locked facts.
 
-For a material action that may touch locked facts, first prepare a compact rule check with `scripts/check_world_rules.py`. Use `--request-id <id>` when the action came from the frontend. Read only that packet and its listed sources unless the conflict cannot be resolved from the compact rule text.
+For a material action that may touch locked facts, first prepare a compact rule check with `scripts/check_world_rules.py`. Use `--request-id <id>` when the action came from a stored player request. Read only that packet and its listed sources unless the conflict cannot be resolved from the compact rule text.
 
 ## God action requests
 
-When a frontend button or quick player command expresses intent, record it first with `scripts/create_action_request.py --world <world> --action <action> ... --confirmed`. Treat ordinary map clicks as selection or inspection unless the player also chooses an action.
+When a player command expresses intent, record it first with `scripts/create_action_request.py --world <world> --action <action> ... --confirmed`. Treat ordinary map inspection as observation unless the player also chooses an action.
 
 This step is intentionally cheap: read only `ACTIVE.md` and the active `SAVE.md`, write `runtime/action-requests/<request_id>/request.json` plus `request.md`, and refresh the manifest. Do not load old chapters, sibling branches, full biographies, or broad event history merely to store the request.
 
@@ -114,7 +114,7 @@ The packet should include a compact `narrative_profile` object from `setup/narra
 
 When the packet or player requests exact old source text, use `scripts/read_source_packet.py --world <world> --source <pointer> --json` or `--from-packet <packet-path>`. Read only explicit pointers. The source reader blocks paths outside the world, outside the root allowlist, or outside the active branch's parent chain.
 
-After narration, use `scripts/settle_interaction.py` with a confirmed settlement result. The settlement result should include visible narration or summary, a GM summary, and a settlement plan. Legacy concrete fields are accepted when they provide event title/type, state appends, chronicle text, consequences, save updates, or dashboard piece updates. Use `scripts/validate_settlement_result.py --result <result.json> --kind interaction --json` before writes when the result came from an external model or may be prose-only. The settlement script rejects prose-only results before canonical writes, writes narrative settlement layers into the event file, writes canonical consequences and derived frontend data, then refreshes the file manifest.
+After narration, use `scripts/settle_interaction.py` with a confirmed settlement result. The settlement result should include visible narration or summary, a GM summary, and a settlement plan. Legacy concrete fields are accepted when they provide event title/type, state appends, chronicle text, consequences, save updates, or dashboard piece updates. Use `scripts/validate_settlement_result.py --result <result.json> --kind interaction --json` before writes when the result came from an external model or may be prose-only. The settlement script rejects prose-only results before canonical writes, writes narrative settlement layers into the event file, writes canonical consequences and derived world data, then refreshes the file manifest.
 
 Target resolution must prefer exact state-card `- id:` matches, then allow only a unique filename-prefix fallback. It must not use body-text mentions as target matches. This prevents a decoy card containing `CHAR-0001` or `location: LOC-001` from stealing a click intended for the actual target card. Explicit `--target-file` values must stay inside the current world directory.
 

@@ -1,7 +1,7 @@
 {
   "schema": "be-a-god.file-manifest.v1",
   "world": "plain-sea-marsh",
-  "generated_at": "2026-08-16T15:21:24.491819+00:00",
+  "generated_at": "2026-08-17T14:04:32.350595+00:00",
   "files": [
     {
       "path": "ACTIVE.md",
@@ -35,33 +35,33 @@
     },
     {
       "path": "base/maps/hierarchy.json",
-      "sha256": "d133b2ec3b0cad5dc16e22f762e5fe2b1dcd8541de3900eec208c6027e2b046c",
+      "sha256": "67907d61526cc06880399c4e3be227924598e5652570d8078d032aa459d30a5f",
       "authority": "support",
-      "bytes": 780
+      "bytes": 1237
     },
     {
       "path": "base/maps/terrain-brushes.json",
-      "sha256": "963c2b06ec6f9768cf8a4a0a510889784aa7d0957e6e32e082b917ff7239f9a5",
+      "sha256": "cc296a41ecbd397817fe217379464781a32d562980b2f06821260936a87b2a7e",
       "authority": "support",
-      "bytes": 1199
+      "bytes": 700
     },
     {
       "path": "dashboard/data.json",
-      "sha256": "607ab2a37fb69d490144011019e78a8ae6f895fcd7e8bb0a8a24f0d217724e7f",
+      "sha256": "97e1eebb8e70994ceef5ac957ccb6e6ceaa42ee49f3b2b3f83de4b67ea7973ac",
       "authority": "derived",
-      "bytes": 3540
+      "bytes": 5043
     },
     {
       "path": "dashboard/map-layers.json",
-      "sha256": "687ff65b35a48378163e36c169be77105ce8c2c993d7dab2d24ba491dd07286c",
+      "sha256": "07d379c4ed3fa8d9146a6baa94efbfc829d6da5f5834ae7c4d5dcf9f116cc7bf",
       "authority": "derived",
-      "bytes": 3349
+      "bytes": 3562
     },
     {
       "path": "dashboard/timeline.json",
-      "sha256": "1ed7b1ecdccb4ff26b1344abdf63722e948d7905213264955c34a68e5c52c67f",
+      "sha256": "cfa7894f17d719c9c3958c9527cf57ab72139f48feee8670a17c5ca812dcdd78",
       "authority": "derived",
-      "bytes": 339
+      "bytes": 345
     },
     {
       "path": "indexes/entities.json",

@@ -1,7 +1,7 @@
 interface:
   display_name: "成为神"
-  short_description: "在本地 Markdown 世界中运行持久化模拟神游戏：地图棋子、时间线、编年史、分支存档、随机事件、前端面板与可选外部模型 API。"
-  default_prompt: "Use $be-a-god to start or continue a local persistent god-simulation world with map pieces, timeline, chronicle, branch saves, random logs, optional external model API hosting, and lightweight context loading."
+  short_description: "在本地 Markdown 世界中运行持久化模拟神游戏：地图数据、时间线、编年史、分支存档、随机事件与可选外部模型 API。"
+  default_prompt: "Use $be-a-god to start or continue a local persistent god-simulation world with map data, timeline, chronicle, branch saves, random logs, optional external model API hosting, and lightweight context loading."
 
 policy:
   allow_implicit_invocation: true

@@ -205,7 +205,7 @@ def validate_map_layers_data(data: object, world: Path, active: dict[str, str], 
                 errors.append(f"{rel} {collection_name}[{index}] level `{item.get('level')}` is not in levels")
             if "source" in item:
                 validate_source_pointer(item.get("source"), world, errors, warnings, rel, f"{collection_name}[{index}].source")
-    valid_brush_kinds = {"river", "tributary", "hills", "forest", "marsh", "custom"}
+    valid_brush_kinds = {"river", "tributary", "hills", "forest", "marsh", "coast", "custom"}
     for index, brush in enumerate(brushes, start=1):
         if not isinstance(brush, dict):
             errors.append(f"{rel} brushes[{index}] must be an object")
@@ -238,11 +238,11 @@ def validate_map_layers_data(data: object, world: Path, active: dict[str, str], 
 
 
 def validate_derived_json(rel: str, data: object, world: Path, active: dict[str, str], errors: list[str], warnings: list[str]) -> None:
-    if rel.endswith("dashboard/data.json") or rel.endswith("frontend/dashboard.json"):
+    if rel.endswith("dashboard/data.json"):
         validate_dashboard_data(data, world, active, errors, warnings, rel)
-    elif rel.endswith("dashboard/timeline.json") or rel.endswith("frontend/timeline.json"):
+    elif rel.endswith("dashboard/timeline.json"):
         validate_timeline_data(data, world, active, errors, warnings, rel)
-    elif rel.endswith("dashboard/map-layers.json") or rel.endswith("frontend/map-layers.json"):
+    elif rel.endswith("dashboard/map-layers.json"):
         validate_map_layers_data(data, world, active, errors, warnings, rel)
 
 
@@ -489,22 +489,6 @@ def validate_resume_packets(branch: Path, world: Path, errors: list[str], warnin
         if not resume_md.exists():
             errors.append(f"Resume packet missing resume.md beside {rel}")
 
-
-def validate_frontend(world: Path, active: dict[str, str], errors: list[str], warnings: list[str]) -> None:
-    frontend = world / "frontend"
-    if not frontend.exists():
-        return
-    for rel in ["index.html", "styles.css", "app.js", "README.md"]:
-        if not (frontend / rel).exists():
-            warnings.append(f"Frontend folder missing {rel}")
-    for rel in ["dashboard.json", "timeline.json", "map-layers.json"]:
-        path = frontend / rel
-        if path.exists():
-            data = read_json(path, errors, f"frontend/{rel}")
-            if data is not None:
-                validate_derived_json(f"frontend/{rel}", data, world, active, errors, warnings)
-        else:
-            warnings.append(f"Frontend folder missing {rel}")
 
 
 def validate_content_profile(world: Path, errors: list[str], warnings: list[str]) -> None:
@@ -935,7 +919,7 @@ def validate(world: Path) -> tuple[list[str], list[str]]:
     validate_divine_assessments(branch, world, errors, warnings)
     validate_rule_checks(branch, world, errors, warnings)
     validate_resume_packets(branch, world, errors, warnings)
-    validate_frontend(world, active, errors, warnings)
+
     validate_content_profile(world, errors, warnings)
     validate_advance_profile(world, errors, warnings)
     validate_narrative_profile(world, errors, warnings)

@@ -108,7 +108,7 @@ Store player-confirmed world rules and locked facts in `setup/world-rules.json`,
 
 Use `scripts/set_world_rule.py --world <world> --text <rule> --confirmed` to create or update rules. Rules include `rule_id`, `text`, `scope`, optional `target`, `effective_time`, `status`, `replaces`, and `tags`. Changing a rule is canon configuration, but it does not by itself narrate or settle downstream events; material consequences still need normal event settlement.
 
-Interaction packets and dashboard exports include a compact `world_rules.active` summary and pointers to `setup/world-rules.json` and `CANON.md`, so the model and frontend can obey or display locked facts without loading broad history.
+Interaction packets and derived dashboard exports include a compact `world_rules.active` summary and pointers to `setup/world-rules.json` and `CANON.md`, so the host can obey locked facts without loading broad history.
 
 Before executing a material action that may contradict locked facts, create a non-canonical rule check under the active branch with `scripts/check_world_rules.py --world <world> --request-id <id> --confirmed`. Rule checks live in `runtime/rule-checks/<check_id>/` and contain only the action summary, relevant active rules, source pointers, and a decision field. They do not change canon.
 
@@ -144,7 +144,7 @@ Do not require this file to be enabled for Codex play. For external play, prefer
 
 ## Action requests
 
-Frontend and quick player commands should first write support requests under the active branch `runtime/action-requests/<request_id>/`.
+Player commands should first write support requests under the active branch `runtime/action-requests/<request_id>/`.
 
 Each request must contain:
 
@@ -159,8 +159,6 @@ Use `scripts/create_action_request.py` for observe, speak, intervene, advance-ti
 Use `scripts/update_action_request.py` to mark a request `accepted`, `executed`, or `cancelled`. This lifecycle update remains non-canonical; any real world effect must be visible through the linked interaction packet, random log, queue settlement, event node, or other result pointer.
 
 Use `scripts/list_action_requests.py --pending --json` or `dashboard.pending_action_requests` to show the player unresolved requests without reading story history. The exported dashboard should include only request summaries and source pointers.
-
-`scripts/serve_frontend.py` may expose a localhost API that creates the same action requests from frontend buttons. This is still support-file creation only. Do not add API endpoints that directly mutate canon event files, state cards, queues, random logs, terrain brush state, or branch pointers without going through the matching confirmed script and player/Codex review.
 
 ## Divine assessments
 
@@ -180,15 +178,15 @@ Branch-local moving entities live under `story/<branch>/state/entities/*.md`. Br
 
 Use `scripts/create_entity.py` for new cards when possible. The script handles IDs, filenames, card fields, optional map coordinates for locations, derived indexes, map layers, visible pieces, and manifest refresh. It does not invent semantic content; personality, motives, secrets, and faction meaning should come from the player or model and be passed as stored fields.
 
-Characters, items, factions, or objects may become frontend pieces when they are stored in `state/entities/`. A visible piece should have either direct `x`/`y` fields or a `location` that resolves through `base/maps/coordinates.json`.
+Characters, items, factions, or objects stored in `state/entities/` are canonical moving/entity state. Give map-relevant entities either direct `x`/`y` fields or a `location` resolving through `base/maps/coordinates.json` so derived map data remains accurate.
 
-Initial terrain brush particles live in `base/maps/terrain-brushes.json`. Branch-local terrain changes live in `story/<branch>/state/terrain-brushes.json` as overrides, additions, or tombstones. Use these brushes for rivers, tributaries, hills, forests, and other map paint strokes that a player may alter through divine action. `build_map_layers.py` merges the base brush layer with the active branch override layer and exports the result into `dashboard/map-layers.json`; the frontend renders them as SVG particles. Command-style terrain edits should first create a non-canonical `terrain-brush` action request, then run `scripts/set_map_brush.py` only after the geometry or removal is confirmed. The brush editor is a coordinate-capture and preview UI only; it must generate the same `terrain-brush` request and must not invent a separate map format or mutate exported dashboard JSON directly.
+Initial terrain brush geometry lives in `base/maps/terrain-brushes.json`. Branch-local terrain changes live in `story/<branch>/state/terrain-brushes.json` as overrides, additions, or tombstones. `build_map_layers.py` merges base and active-branch brush state into `dashboard/map-layers.json` for script and host inspection. Command-style terrain edits first create a non-canonical `terrain-brush` action request, then run `scripts/set_map_brush.py` after geometry or removal is confirmed.
 
 Use `scripts/move_entity.py` for mechanical movement. It updates only the active branch entity card and rebuildable derivatives; it does not decide narrative motive or create a confirmed event by itself.
 
 Use `scripts/wander_entities.py` for routine wandering ticks. It writes entity location/status fields, appends a `kind: wander` random log entry for each moved entity, and rebuilds map pieces. It does not create event nodes or chronicle entries unless the model later promotes a movement into a meaningful event.
 
-`export_dashboard.py` should also export `attention` counts and compact lists for followed, ignored, and plot-ready pieces. The frontend uses this summary for the permanent attention panel instead of scanning all entity cards.
+`export_dashboard.py` exports attention counts and compact followed, ignored, and plot-ready lists so the host can inspect attention state without scanning every entity card.
 
 `advance_world.py --wander` may call the wandering tick after a successful non-paused time advance. If the advance stops on a queued pause, wandering is skipped until the pause is resolved.
 
@@ -216,7 +214,7 @@ Path-backed IDs that become directory or file names must contain only letters, n
 
 Random output must be reproducible per branch. Store a branch seed and append each call to `random/random-log.jsonl`. User overrides are allowed, but record them as overrides rather than silently replacing previous random outcomes.
 
-Weather random results and player weather overrides should also update `dashboard/data.json` so the frontend's permanent weather display stays current. `export_dashboard.py` should rebuild a compact `random_log` summary from the active branch `random/random-log.jsonl`, including only recent entries and the source pointer. Refresh `system/file-manifest.json` after random writes unless running a dry diagnostic flow.
+Weather random results and player weather overrides should update `dashboard/data.json` so derived world summaries remain current. `export_dashboard.py` rebuilds a compact `random_log` summary from the active branch `random/random-log.jsonl`, including only recent entries and the source pointer. Refresh `system/file-manifest.json` after random writes unless running a dry diagnostic flow.
 
 ## Event queues
 
