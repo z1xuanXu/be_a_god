@@ -1,0 +1,47 @@
+{
+  "schema": "be-a-god.map-hierarchy.v1",
+  "levels": [
+    "world",
+    "region",
+    "scene"
+  ],
+  "nodes": [
+    {
+      "id": "LOC-START",
+      "name": "西侧平原、中央大海与危险沼泽、东侧平原。",
+      "kind": "region",
+      "level": "region"
+    },
+    {
+      "id": "LOC-001",
+      "name": "西岸平原",
+      "level": "region"
+    },
+    {
+      "id": "LOC-002",
+      "name": "黑潮大海",
+      "level": "region"
+    },
+    {
+      "id": "LOC-003",
+      "name": "沉舟险沼",
+      "level": "region"
+    },
+    {
+      "id": "LOC-004",
+      "name": "东岸平原",
+      "level": "region"
+    }
+  ],
+  "terrain_zones": [
+    {"id": "ZONE-WEST-PLAIN", "name": "西岸平原", "terrain": "plain", "bounds": [0, 0, 30, 100]},
+    {"id": "ZONE-CENTRAL-SEA", "name": "黑潮大海", "terrain": "coast", "bounds": [30, 0, 68, 100]},
+    {"id": "ZONE-DANGER-MARSH", "name": "沉舟险沼", "terrain": "marsh", "bounds": [52, 56, 68, 100], "danger": true},
+    {"id": "ZONE-EAST-PLAIN", "name": "东岸平原", "terrain": "plain", "bounds": [68, 0, 100, 100]}
+  ],
+  "map_generation": {
+    "status": "generated",
+    "source": "setup/WORLD-BRIEF.md",
+    "method": "confirmed-brief-keyword-seed"
+  }
+}

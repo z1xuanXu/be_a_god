@@ -1,0 +1,40 @@
+{
+  "schema": "be-a-god.event-graph.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "branch_path": "story/main",
+  "nodes": [
+    {
+      "id": "EVT-0001",
+      "key": "story/main:EVT-0001",
+      "branch_path": "story/main",
+      "title": "EVT-0001 world confirmed",
+      "type": "world-start",
+      "time": "year 1, day 1",
+      "branch_id": "main",
+      "location": null,
+      "actors": [],
+      "causes": [],
+      "effects": [],
+      "tags": [
+        "world-start"
+      ],
+      "source": "story/main/events/EVT-0001-world-confirmed.md",
+      "source_pointer": "setup/WORLD-BRIEF.md",
+      "queue_id": null,
+      "cause_refs": [],
+      "cause_notes": [],
+      "effect_refs": [],
+      "effect_notes": []
+    }
+  ],
+  "links": [],
+  "by_actor": {},
+  "by_location": {},
+  "by_tag": {
+    "world-start": [
+      "EVT-0001"
+    ]
+  },
+  "unresolved_refs": []
+}

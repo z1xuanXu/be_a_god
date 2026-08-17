@@ -75,6 +75,13 @@
             <button id="map-zoom-reset" type="button" title="重置视角">重置</button>
           </div>
           <div id="map" class="map" aria-live="polite"></div>
+          <section class="unit-roster" aria-label="地图单位列表">
+            <div class="unit-roster-heading">
+              <h2>地图单位</h2>
+              <p>选择单位后，地图会居中放大；属性显示在右侧详情。</p>
+            </div>
+            <ul id="unit-roster" class="unit-roster-list"></ul>
+          </section>
           <section id="story-reader" class="story-reader" aria-label="剧情阅读器" tabindex="-1">
             <header class="story-reader-header">
               <div>
@@ -134,6 +141,7 @@
                 <option value="tributary">tributary 支流</option>
                 <option value="hills">hills 山丘</option>
                 <option value="forest">forest 森林</option>
+                <option value="marsh">marsh 沼泽</option>
                 <option value="custom">custom 自定义</option>
               </select>
             </label>

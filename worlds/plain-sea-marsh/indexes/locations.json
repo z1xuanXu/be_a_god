@@ -1,0 +1,51 @@
+{
+  "schema": "be-a-god.location-index.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "locations": [
+    {
+      "id": "LOC-001",
+      "name": "西岸平原",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-001-western-plain.md",
+      "x": 12.0,
+      "y": 50.0
+    },
+    {
+      "id": "LOC-002",
+      "name": "黑潮大海",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-002-blacktide-sea.md",
+      "x": 43.0,
+      "y": 50.0
+    },
+    {
+      "id": "LOC-003",
+      "name": "沉舟险沼",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-003-wreckfen-marsh.md",
+      "x": 60.0,
+      "y": 50.0
+    },
+    {
+      "id": "LOC-004",
+      "name": "东岸平原",
+      "kind": "location",
+      "level": "region",
+      "parent": null,
+      "status": "ordinary",
+      "source": "story/main/state/locations/LOC-004-eastern-plain.md",
+      "x": 88.0,
+      "y": 50.0
+    }
+  ]
+}

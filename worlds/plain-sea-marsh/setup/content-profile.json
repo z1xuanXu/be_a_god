@@ -1,0 +1,13 @@
+{
+  "preset": "standard",
+  "presentation": {
+    "soften_on_request": true,
+    "facts_remain_intact_when_softened": true,
+    "notes": "冲突须有后果；不将苦难当作奇观。"
+  },
+  "topics": {},
+  "player_absolute_bans": [
+    "不色情化胁迫。",
+    "不美化或煽动基于性别的伤害。"
+  ]
+}

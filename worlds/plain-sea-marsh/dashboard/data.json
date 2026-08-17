@@ -1,0 +1,165 @@
+{
+  "schema": "be-a-god.dashboard.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "time": "year 1, day 1",
+  "weather": null,
+  "focal_place": "西侧平原、中央大海与危险沼泽、东侧平原。",
+  "current_scene": "一片从左向右依次为西侧平原、中部大海与危机四伏的沼泽、东侧平原的世界。左右两侧各有一个孤立的人类聚居点，尚未建立稳定联系。 已被确认。海沼之间的观察者：能够观察两侧平原、大海与沼泽，并选择干预。 可以第一次观察、推进时间、点击棋子或干预世界。",
+  "pieces": [
+    {
+      "id": "CHAR-0001",
+      "kind": "character",
+      "type": null,
+      "label": "岑野",
+      "location": "LOC-001",
+      "status": "active",
+      "attention": "followed",
+      "source": "story/main/state/entities/CHAR-0001-cenye.md",
+      "x": 12.0,
+      "y": 50.0,
+      "location_name": "西岸平原"
+    },
+    {
+      "id": "CHAR-0002",
+      "kind": "character",
+      "type": null,
+      "label": "澜禾",
+      "location": "LOC-004",
+      "status": "active",
+      "attention": "followed",
+      "source": "story/main/state/entities/CHAR-0002-lanhe.md",
+      "x": 88.0,
+      "y": 50.0,
+      "location_name": "东岸平原"
+    }
+  ],
+  "pins": [
+    {
+      "id": "EVT-0001",
+      "kind": "event",
+      "label": "EVT-0001 world confirmed",
+      "source": "story/main/events/EVT-0001-world-confirmed.md",
+      "target_id": null
+    }
+  ],
+  "pending_action_requests": [],
+  "advance_profile": {
+    "source": "setup/advance-profile.json",
+    "default_preset": "hybrid",
+    "presets": [
+      {
+        "id": "chronicle",
+        "mode": "chronicle",
+        "days": 30,
+        "wander": true,
+        "wander_limit": 5,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance in chronicle view and summarize ordinary background changes."
+      },
+      {
+        "id": "event-watch",
+        "mode": "event-priority",
+        "days": 90,
+        "wander": true,
+        "wander_limit": 6,
+        "stop_on_queue": true,
+        "until_next_queue": true,
+        "summary": "Advance toward the next player-worthy queued or emergent event."
+      },
+      {
+        "id": "hybrid",
+        "mode": "hybrid",
+        "days": 7,
+        "wander": true,
+        "wander_limit": 3,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance with mixed attention: current focus stays precise, background pieces may wander."
+      },
+      {
+        "id": "step",
+        "mode": "step",
+        "days": 1,
+        "wander": false,
+        "wander_limit": 0,
+        "stop_on_queue": true,
+        "until_next_queue": null,
+        "summary": "Advance one short world step."
+      }
+    ]
+  },
+  "narrative_profile": {
+    "source": "setup/narrative-profile.json",
+    "default_profile": "hybrid-historical",
+    "label": "混合模式，但偏真实历史感",
+    "default_scale": "mixed-closeup-chronicle",
+    "priority_order": [
+      "causality",
+      "world_continuity",
+      "character_agency",
+      "historical_texture",
+      "dramatic_presentation"
+    ],
+    "required_output_layers": [
+      "visible_narration",
+      "gm_summary",
+      "settlement_plan"
+    ]
+  },
+  "world_rules": {
+    "source": "setup/world-rules.json",
+    "active": []
+  },
+  "latest_random": null,
+  "random_log": {
+    "source": "story/main/random/random-log.jsonl",
+    "count": 0,
+    "latest": null,
+    "recent": []
+  },
+  "attention": {
+    "followed_count": 2,
+    "ignored_count": 0,
+    "plot_ready_count": 0,
+    "followed": [
+      {
+        "id": "CHAR-0001",
+        "label": "岑野",
+        "status": "active",
+        "attention": "followed",
+        "source": "story/main/state/entities/CHAR-0001-cenye.md"
+      },
+      {
+        "id": "CHAR-0002",
+        "label": "澜禾",
+        "status": "active",
+        "attention": "followed",
+        "source": "story/main/state/entities/CHAR-0002-lanhe.md"
+      }
+    ],
+    "ignored": [],
+    "plot_ready": []
+  },
+  "story": {
+    "current": {
+      "id": "CURRENT-SCENE",
+      "title": "西侧平原、中央大海与危险沼泽、东侧平原。",
+      "time": "year 1, day 1",
+      "state": "current",
+      "narrative": "一片从左向右依次为西侧平原、中部大海与危机四伏的沼泽、东侧平原的世界。左右两侧各有一个孤立的人类聚居点，尚未建立稳定联系。 已被确认。海沼之间的观察者：能够观察两侧平原、大海与沼泽，并选择干预。 可以第一次观察、推进时间、点击棋子或干预世界。",
+      "source": "story/main/SAVE.md"
+    },
+    "entries": [
+      {
+        "id": "EVT-0001",
+        "title": "EVT-0001 world confirmed",
+        "time": "year 1, day 1",
+        "state": "confirmed",
+        "narrative": "玩家确认了世界草案，正式世界开始存在。",
+        "source": "story/main/events/EVT-0001-world-confirmed.md"
+      }
+    ]
+  }
+}

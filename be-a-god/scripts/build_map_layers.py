@@ -110,6 +110,7 @@ def main() -> int:
         "nodes": nodes,
         "places": places,
         "brushes": brushes,
+        "terrain_zones": hierarchy.get("terrain_zones", []),
         "map_generation": load_json(world / "base" / "maps" / "hierarchy.json", {}).get("map_generation", {"status": "pending", "source": "missing"}),
         "read_policy": "frontend map layers only; story text not included",
     }

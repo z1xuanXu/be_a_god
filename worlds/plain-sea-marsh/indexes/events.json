@@ -1,0 +1,15 @@
+{
+  "schema": "be-a-god.event-index.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "events": [
+    {
+      "id": "EVT-0001",
+      "title": "EVT-0001 world confirmed",
+      "type": "world-start",
+      "time": "year 1, day 1",
+      "target_id": null,
+      "source": "story/main/events/EVT-0001-world-confirmed.md"
+    }
+  ]
+}

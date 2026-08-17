@@ -566,6 +566,10 @@ function activeBrushes() {
   return mapLayers.brushes || [];
 }
 
+function terrainZones() {
+  return Array.isArray(mapLayers.terrain_zones) ? mapLayers.terrain_zones : [];
+}
+
 function updateMapZoomLabel() {
   const label = $("#map-zoom-label");
   if (label) label.textContent = `${Math.round(mapView.scale * 100)}%`;
@@ -828,6 +832,14 @@ function deterministicNoise(x, y, salt = 0) {
 }
 
 function backgroundTerrainForPoint(point) {
+  const zones = terrainZones();
+  if (zones.length) {
+    const matching = zones.filter((zone) => {
+      const bounds = Array.isArray(zone.bounds) ? zone.bounds.map(Number) : [];
+      return bounds.length === 4 && point.x >= bounds[0] && point.x < bounds[2] && point.y >= bounds[1] && point.y < bounds[3];
+    });
+    return classToken(matching[matching.length - 1]?.terrain, "plain");
+  }
   const zoneX = Math.floor(point.x / 10);
   const zoneY = Math.floor(point.y / 10);
   const seed = deterministicNoise(zoneX, zoneY, 7);
@@ -854,15 +866,18 @@ function rawTerrainForHexCell(cell) {
   const creation = mapLayers.map_generation || {};
   if (creation.status === "pending") return "meadow";
 
+  const zones = terrainZones();
+  const zoneTerrain = zones.length ? backgroundTerrainForPoint(cell) : null;
   const candidates = activeBrushes()
     .map((brush) => ({ brush, distance: distanceToBrush(cell, brush), radius: brushTerrainRadius(cell, brush) }))
     .sort((a, b) => a.distance - b.distance);
   const nearest = candidates[0];
-  if (nearest && nearest.distance < nearest.radius) {
+  const isPlayerOverride = String(nearest?.brush?.source || "").includes("/state/");
+  if (nearest && nearest.distance < nearest.radius && (!zoneTerrain || isPlayerOverride)) {
     const brushKind = classToken(nearest.brush.kind, "grassland");
     return brushKind === "plain" || brushKind === "custom" ? "grassland" : brushKind;
   }
-  return backgroundTerrainForPoint(cell);
+  return zoneTerrain || backgroundTerrainForPoint(cell);
 }
 
 function terrainAnchorForHexCell(cell) {
@@ -958,7 +973,19 @@ function renderHexGrid(parent, level) {
       layer.appendChild(tile);
     }
     parent.appendChild(layer);
-}
+    terrainZones().forEach((zone) => {
+      const bounds = Array.isArray(zone.bounds) ? zone.bounds.map(Number) : [];
+      if (bounds.length !== 4) return;
+      const label = document.createElement("span");
+      label.className = `terrain-zone-label terrain-zone-${classToken(zone.terrain, "plain")}`;
+      label.textContent = zone.name || zone.id;
+      label.style.left = `${(bounds[0] + bounds[2]) / 2}%`;
+      label.style.top = `${(bounds[1] + bounds[3]) / 2}%`;
+      label.dataset.zoomLevel = level;
+      applyZoomFade(label, level, 0.9, 0);
+      parent.appendChild(label);
+    });
+  }
 
 function showMapObjectDetail(kind, item, snapped) {
   const detailItem = {
@@ -992,7 +1019,7 @@ function renderHexUnit(parent, item, kind, index, options = {}) {
   node.title = `${item.label || item.name || item.id}｜坐标 ${pos.x.toFixed?.(1) || pos.x},${pos.y.toFixed?.(1) || pos.y}｜六边形 ${snapped.col},${snapped.row}`;
   node.innerHTML = `
     <span class="unit-icon" aria-hidden="true"></span>
-    <span class="unit-label">${escapeHtml(item.label || item.name || item.id || "--")}</span>
+    ${options.showLabel ? `<span class="unit-label">${escapeHtml(item.label || item.name || item.id || "--")}</span>` : ""}
     ${options.speed ? `<span class="unit-speed">${escapeHtml(options.speed)}</span>` : ""}
   `;
   node.addEventListener("click", (event) => {
@@ -1132,10 +1159,8 @@ function renderMapDecorations(map, content) {
   const terrain = document.createElement("div");
   terrain.className = "terrain-layer";
   terrain.setAttribute("aria-hidden", "true");
-  renderMapBackdropStamps(content);
   terrain.appendChild(renderBrushSvg());
   content.appendChild(terrain);
-  renderBrushAssetStamps(content);
 
   ["top-left", "top-right", "bottom-left", "bottom-right"].forEach((corner) => {
     const ornament = document.createElement("img");
@@ -1148,7 +1173,7 @@ function renderMapDecorations(map, content) {
 
   const title = document.createElement("div");
   title.className = "map-scroll-title";
-  title.textContent = dashboard.focal_place || dashboard.world_id || "神视地图";
+  title.textContent = "神视地图";
   map.appendChild(title);
 
   const compass = document.createElement("div");
@@ -1328,102 +1353,49 @@ function renderMap() {
   map.appendChild(content);
   renderHexGrid(content, visibleLevel);
   renderMapDecorations(map, content);
-  const worldOverview = document.createElement("button");
-  worldOverview.draggable = false;
-  worldOverview.className = "hex-unit map-node world overview city-unit";
-  const center = nearestHexCenter({ x: 50, y: 45 }, visibleLevel);
-  const pieceWidth = center.drawWidth * 0.72;
-  const pieceHeight = center.drawHeight * 0.72;
-  worldOverview.style.left = `${center.x}%`;
-  worldOverview.style.top = `${center.y}%`;
-  worldOverview.style.setProperty("--piece-width", `${pieceWidth}%`);
-  worldOverview.style.setProperty("--piece-height", `${pieceHeight}%`);
-  worldOverview.style.setProperty("--node-icon", `url("${MAP_ASSETS.pieceCityCity}")`);
-  worldOverview.style.setProperty("--unit-icon", `url("${MAP_ASSETS.pieceCityCity}")`);
-  worldOverview.innerHTML = `<span class="unit-icon" aria-hidden="true"></span><span class="unit-label">${escapeHtml(dashboard.focal_place || dashboard.world_id || "世界总览")}</span>`;
-  worldOverview.title = "世界总览";
-  worldOverview.addEventListener("click", () => showDetail("map-node", {
-    id: dashboard.world_id || "WORLD",
-    kind: "world",
-    label: dashboard.focal_place || dashboard.world_id || "世界总览",
-    status: "world",
-    source: "dashboard.json"
-  }));
-  applyZoomFade(worldOverview, visibleLevel, 1, 0);
-  content.appendChild(worldOverview);
-  (mapLayers.nodes || []).forEach((layerNode, index) => {
-    renderHexUnit(content, {
-      ...layerNode,
-      label: layerNode.name || layerNode.id,
-      kind: "location"
-    }, "map-node", index + 13, {
-      className: "hex-unit map-node",
-      level: visibleLevel,
-      asset: MAP_ASSETS[nodeAssetName(layerNode)]
-    });
-  });
   (dashboard.pieces || []).forEach((piece, index) => {
     renderHexUnit(content, piece, "piece", index, {
       className: "hex-unit piece",
       level: visibleLevel,
       asset: MAP_ASSETS[pieceAssetName(piece)],
+      showLabel: false,
       speed: piece.speed || piece.move_speed || piece.speed_label || ""
     });
   });
-  (dashboard.pins || []).forEach((pin, index) => {
-    renderHexUnit(content, pin, "pin", index + 7, {
-      className: "hex-unit pin",
-      level: visibleLevel,
-      asset: MAP_ASSETS.pieceEvent
-    });
-  });
-  if (false) {
-  (mapLayers.nodes || [])
-    .forEach((layerNode, index) => {
-      const pos = positionOf(layerNode, index + 13);
-      const node = document.createElement("button");
-      node.className = `map-node ${classToken(layerNode.level, "world")}`;
-      node.style.left = `${pos.x}%`;
-      node.style.top = `${pos.y}%`;
-      node.style.setProperty("--node-icon", `url("${MAP_ASSETS[nodeAssetName(layerNode)]}")`);
-      node.textContent = layerNode.name || layerNode.id;
-      node.title = `${layerNode.name || layerNode.id}｜${layerNode.level || "map"}`;
-      node.addEventListener("click", () => showDetail("map-node", {
-        id: layerNode.id,
-        kind: "location",
-        label: layerNode.name || layerNode.id,
-        status: layerNode.level || "map",
-        source: layerNode.source
-      }));
-      applyZoomFade(node, layerNode.level || "region", 1, 0.05);
-      content.appendChild(node);
-    });
-  (dashboard.pieces || []).forEach((piece, index) => {
-    const pos = positionOf(piece, index);
-    const node = document.createElement("button");
-    node.className = `piece ${classToken(piece.status, "ordinary")}`;
-    node.style.left = `${pos.x}%`;
-    node.style.top = `${pos.y}%`;
-    node.title = `${piece.label}｜${piece.status || "ordinary"}`;
-    node.textContent = piece.label ? piece.label.slice(0, 2) : piece.id.slice(0, 2);
-    node.addEventListener("click", () => showDetail("piece", piece));
-    applyZoomFade(node, visualLevelForPiece(piece), 1, 0);
-    content.appendChild(node);
-  });
-  (dashboard.pins || []).forEach((pin, index) => {
-    const pos = positionOf(pin, index + 7);
-    const node = document.createElement("button");
-    node.className = "pin";
-    node.style.left = `${pos.x}%`;
-    node.style.top = `${pos.y}%`;
-    node.textContent = "✦ " + (pin.label || pin.id);
-    node.addEventListener("click", () => showDetail("pin", pin));
-    applyZoomFade(node, pin.level || "scene", 1, 0);
-    content.appendChild(node);
-  });
-  }
   renderBrushEditorPreview(content);
   applyMapViewTransform();
+  renderUnitRoster();
+}
+
+function focusUnit(unit) {
+  const pos = positionOf(unit);
+  if (pos.pending) return;
+  const rect = $("#map")?.getBoundingClientRect();
+  if (!rect) return;
+  const target = nearestHexCenter(pos, mapLevelForScale());
+  mapView.scale = Math.min(Math.max(mapView.scale, MAP_ZOOM.taskCloseup), MAP_ZOOM.max);
+  mapView.x = rect.width / 2 - (target.x / 100) * rect.width * mapView.scale;
+  mapView.y = rect.height / 2 - (target.y / 100) * rect.height * mapView.scale;
+  selected = { kind: "piece", item: unit };
+  showDetail("piece", unit);
+  renderMap();
+}
+
+function renderUnitRoster() {
+  const list = $("#unit-roster");
+  if (!list) return;
+  const units = (dashboard.pieces || []).filter((piece) => piece.kind === "character" || piece.movable === true);
+  list.innerHTML = units.length ? "" : "<li class=\"unit-roster-empty\">当前没有可移动单位。</li>";
+  units.forEach((unit) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "unit-roster-item";
+    button.innerHTML = `<span class="roster-icon" aria-hidden="true"></span><strong>${escapeHtml(unit.label || unit.id)}</strong><small>${escapeHtml(unit.location_name || unit.location || "未定位")} · ${escapeHtml(bilingualTerm(unit.status || "ordinary"))}</small>`;
+    button.addEventListener("click", () => focusUnit(unit));
+    item.appendChild(button);
+    list.appendChild(item);
+  });
 }
 
 function showDetail(kind, item) {
@@ -1479,7 +1451,7 @@ function promptTerrainBrushDraft() {
     showDetail("system", { id: "TERRAIN_CANCELLED", label: "改地形已取消：缺少笔刷 ID", state: "cancelled" });
     return null;
   }
-  const kind = window.prompt("地形类型：river / tributary / hills / forest / custom", "river");
+  const kind = window.prompt("地形类型：river / tributary / hills / forest / marsh / custom", "river");
   if (!kind || !kind.trim()) {
     showDetail("system", { id: "TERRAIN_CANCELLED", label: "改地形已取消：缺少地形类型", state: "cancelled" });
     return null;
@@ -1707,7 +1679,8 @@ function validateMapLayersData(data) {
     levels: Array.isArray(data.levels) ? data.levels : ["world", "region", "scene"],
     nodes: data.nodes || [],
     places: data.places || [],
-    brushes: Array.isArray(data.brushes) ? data.brushes : []
+    brushes: Array.isArray(data.brushes) ? data.brushes : [],
+    terrain_zones: Array.isArray(data.terrain_zones) ? data.terrain_zones : []
   };
 }
 

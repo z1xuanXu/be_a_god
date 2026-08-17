@@ -1,0 +1,36 @@
+{
+  "schema": "be-a-god.terrain-brushes.v1",
+  "brushes": [
+    {
+      "id": "BRUSH-CREATION-MARSH",
+      "kind": "marsh",
+      "label": "创世地形：marsh",
+      "level": "region",
+      "points": [
+        [
+          24,
+          68
+        ],
+        [
+          31,
+          76
+        ],
+        [
+          42,
+          71
+        ]
+      ],
+      "width": 6,
+      "density": 16,
+      "jitter": 2,
+      "color": "#60734f",
+      "mutable_by_divine_action": true
+    }
+  ],
+  "map_generation": {
+    "status": "generated",
+    "source": "setup/WORLD-BRIEF.md",
+    "method": "confirmed-brief-keyword-seed"
+  },
+  "read_policy": "terrain brush particles for frontend map only; story text not included"
+}

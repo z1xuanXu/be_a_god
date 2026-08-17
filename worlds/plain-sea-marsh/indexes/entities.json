@@ -1,0 +1,23 @@
+{
+  "schema": "be-a-god.entity-index.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "entities": [
+    {
+      "id": "CHAR-0001",
+      "name": "岑野",
+      "kind": "character",
+      "location": "LOC-001",
+      "status": "active",
+      "source": "story/main/state/entities/CHAR-0001-cenye.md"
+    },
+    {
+      "id": "CHAR-0002",
+      "name": "澜禾",
+      "kind": "character",
+      "location": "LOC-004",
+      "status": "active",
+      "source": "story/main/state/entities/CHAR-0002-lanhe.md"
+    }
+  ]
+}

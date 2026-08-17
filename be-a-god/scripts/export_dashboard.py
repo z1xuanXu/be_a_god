@@ -42,7 +42,7 @@ def parse_save(branch: Path) -> dict:
     }
 
 
-def parse_entity(path: Path, world: Path) -> dict:
+def parse_entity(path: Path, world: Path, location_coords: dict[str, dict] | None = None) -> dict:
     text = path.read_text(encoding="utf-8")
     entity_id = parse_field(text, "id") or path.stem
     name = parse_field(text, "public_name") or parse_field(text, "name") or entity_id
@@ -67,6 +67,11 @@ def parse_entity(path: Path, world: Path) -> dict:
     level = parse_field(text, "level")
     if level:
         piece["level"] = level
+    location = (location_coords or {}).get(str(piece.get("location")))
+    if location and "x" not in piece and "y" not in piece:
+        piece["x"] = location.get("x")
+        piece["y"] = location.get("y")
+        piece["location_name"] = location.get("name")
     return piece
 
 
@@ -396,7 +401,12 @@ def build_dashboard(world: Path) -> dict:
     active = parse_active(world)
     branch = world / active["branch_path"]
     save = parse_save(branch)
-    pieces = [parse_entity(path, world) for path in sorted((branch / "state" / "entities").glob("*.md"))]
+    try:
+        coordinate_data = json.loads((world / "base" / "maps" / "coordinates.json").read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        coordinate_data = {}
+    location_coords = {str(item.get("id")): item for item in coordinate_data.get("places", []) if isinstance(item, dict) and item.get("id")}
+    pieces = [parse_entity(path, world, location_coords) for path in sorted((branch / "state" / "entities").glob("*.md"))]
     apply_attention(pieces, load_attention(branch))
     pins = [parse_event_pin(path, world) for path in sorted((branch / "events").glob("EVT-*.md"))]
     pending_action_requests = list_pending_action_requests(branch, world)

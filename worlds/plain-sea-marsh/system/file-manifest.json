@@ -1,0 +1,253 @@
+{
+  "schema": "be-a-god.file-manifest.v1",
+  "world": "plain-sea-marsh",
+  "generated_at": "2026-08-16T15:21:24.491819+00:00",
+  "files": [
+    {
+      "path": "ACTIVE.md",
+      "sha256": "8a14245686f5f34d3ef68c0e95fd856de8c5ebed14898e78ac05c4444e4a7590",
+      "authority": "core",
+      "bytes": 106
+    },
+    {
+      "path": "CANON.md",
+      "sha256": "39d8aaf8d247e91947590fd156069cfb90826ddb4168654ee36fd0bd113dc479",
+      "authority": "core",
+      "bytes": 200
+    },
+    {
+      "path": "PLAYER.md",
+      "sha256": "8e4759e45eedb023b3132575305623a71f2327bc4316e2c69b695216b92a5ee5",
+      "authority": "core",
+      "bytes": 1000
+    },
+    {
+      "path": "WORLD.md",
+      "sha256": "7607937450d77236854a9acbb75e6abd262e0e2ec9ff318844df4111ef39d4d9",
+      "authority": "core",
+      "bytes": 842
+    },
+    {
+      "path": "base/maps/coordinates.json",
+      "sha256": "1c8987be5566ac7407b91f2e2e4f77ad925c142f7e2200a0b9160834e1920bee",
+      "authority": "support",
+      "bytes": 821
+    },
+    {
+      "path": "base/maps/hierarchy.json",
+      "sha256": "d133b2ec3b0cad5dc16e22f762e5fe2b1dcd8541de3900eec208c6027e2b046c",
+      "authority": "support",
+      "bytes": 780
+    },
+    {
+      "path": "base/maps/terrain-brushes.json",
+      "sha256": "963c2b06ec6f9768cf8a4a0a510889784aa7d0957e6e32e082b917ff7239f9a5",
+      "authority": "support",
+      "bytes": 1199
+    },
+    {
+      "path": "dashboard/data.json",
+      "sha256": "607ab2a37fb69d490144011019e78a8ae6f895fcd7e8bb0a8a24f0d217724e7f",
+      "authority": "derived",
+      "bytes": 3540
+    },
+    {
+      "path": "dashboard/map-layers.json",
+      "sha256": "687ff65b35a48378163e36c169be77105ce8c2c993d7dab2d24ba491dd07286c",
+      "authority": "derived",
+      "bytes": 3349
+    },
+    {
+      "path": "dashboard/timeline.json",
+      "sha256": "1ed7b1ecdccb4ff26b1344abdf63722e948d7905213264955c34a68e5c52c67f",
+      "authority": "derived",
+      "bytes": 339
+    },
+    {
+      "path": "indexes/entities.json",
+      "sha256": "9f82553cdb1948e8034e77a8ecc266ae286c5d7b6c5d04cc25d904b5fefe76f5",
+      "authority": "derived",
+      "bytes": 533
+    },
+    {
+      "path": "indexes/event-graph.json",
+      "sha256": "82829c8c218b9de4dde89d5f011855a478a69485de89f47367156e6b32628e0a",
+      "authority": "derived",
+      "bytes": 894
+    },
+    {
+      "path": "indexes/events.json",
+      "sha256": "aa0cb82149af2d376b2d547e87fc34e518fe58d131ac57a44e578c7fcc6a8fc0",
+      "authority": "derived",
+      "bytes": 345
+    },
+    {
+      "path": "indexes/locations.json",
+      "sha256": "95a65602016256fe6f95d99a5b9020ab3862399634f486fcb3d9354fd77cee26",
+      "authority": "derived",
+      "bytes": 1207
+    },
+    {
+      "path": "setup/WORLD-BRIEF.md",
+      "sha256": "59daaae507bcc4931c80d675664c2c69d5ea4271f2c2e467ab53e15f02ae4734",
+      "authority": "support",
+      "bytes": 2403
+    },
+    {
+      "path": "setup/advance-profile.json",
+      "sha256": "8e1331338e663a804c7b07b621880b15ba4453b8cea24673dedb76f60759f596",
+      "authority": "support",
+      "bytes": 1189
+    },
+    {
+      "path": "setup/content-profile.json",
+      "sha256": "c9f988bca26dffbee43f0675c767d2337b67e49368866c23c696d4c145e06e2a",
+      "authority": "support",
+      "bytes": 321
+    },
+    {
+      "path": "setup/drafts/plain-sea-marsh.WORLD-BRIEF.md",
+      "sha256": "59daaae507bcc4931c80d675664c2c69d5ea4271f2c2e467ab53e15f02ae4734",
+      "authority": "support",
+      "bytes": 2403
+    },
+    {
+      "path": "setup/drafts/world-draft.md",
+      "sha256": "59daaae507bcc4931c80d675664c2c69d5ea4271f2c2e467ab53e15f02ae4734",
+      "authority": "support",
+      "bytes": 2403
+    },
+    {
+      "path": "setup/llm-api.config.json",
+      "sha256": "a1cad36838dafdad84a36baac99ba952366a334d26eef2962a2c65f7221dc2a9",
+      "authority": "support",
+      "bytes": 1104
+    },
+    {
+      "path": "setup/narrative-profile.json",
+      "sha256": "5727164eedcc549d25c015af29d641ab4ab9f78b8f6d83aebed948590e642cbe",
+      "authority": "support",
+      "bytes": 3343
+    },
+    {
+      "path": "setup/world-rules.json",
+      "sha256": "76aa448cd38465836e2bf9d07d4819fab38cdbdc1182bcbc4fe260d742c1289c",
+      "authority": "support",
+      "bytes": 57
+    },
+    {
+      "path": "setup/world-spec.json",
+      "sha256": "346d291b1cf3947d0b42f26e0f92c344e02540d6936741796e2929bbd391a0e3",
+      "authority": "support",
+      "bytes": 1913
+    },
+    {
+      "path": "story/STORY-TREE.md",
+      "sha256": "c9795058c3414c21cb10bf06581616b5267b6b3b03803d4c7df578d5090e0cf2",
+      "authority": "support",
+      "bytes": 87
+    },
+    {
+      "path": "story/main/CURRENT.md",
+      "sha256": "5545babd7cac64436a740a72bddf00f6cf14faecdaf74eab067092689bd94c9b",
+      "authority": "support",
+      "bytes": 111
+    },
+    {
+      "path": "story/main/SAVE.md",
+      "sha256": "37fd865345b1a87d96fe1bad97c917fd04dad01a3963cbe687a075c37b10dd72",
+      "authority": "core",
+      "bytes": 1085
+    },
+    {
+      "path": "story/main/chronicle/epic.md",
+      "sha256": "e21572835290a57c34a48d7eca192035fdd1b2ab0f1389606cb5b051af29b475",
+      "authority": "support",
+      "bytes": 55
+    },
+    {
+      "path": "story/main/chronicle/objective.md",
+      "sha256": "957b3762342b6f05638272466b20e0244244b040754e4938dd11d7b3b2fcaf56",
+      "authority": "support",
+      "bytes": 101
+    },
+    {
+      "path": "story/main/events/EVT-0001-world-confirmed.md",
+      "sha256": "48bb3af741d113440d956146e79db470fb216bb20510a78a784678fd4355541f",
+      "authority": "core",
+      "bytes": 215
+    },
+    {
+      "path": "story/main/queues/events.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "authority": "support",
+      "bytes": 0
+    },
+    {
+      "path": "story/main/random/random-log.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "authority": "core",
+      "bytes": 0
+    },
+    {
+      "path": "story/main/random/seed.json",
+      "sha256": "fa6d1153fbd3ad95e6d49731db2cd85755cbdb5a41f51b26d843170a1c36c841",
+      "authority": "core",
+      "bytes": 196
+    },
+    {
+      "path": "story/main/state/entities/CHAR-0001-cenye.md",
+      "sha256": "27b2fd6f07b24089dc69537fe4f22c1eb9741ea506736ad622924a7926b766df",
+      "authority": "core",
+      "bytes": 409
+    },
+    {
+      "path": "story/main/state/entities/CHAR-0002-lanhe.md",
+      "sha256": "21019338946bb265350fa3c1f6339c7997d3d41cb3595b6abb2faa46a2dd1b7f",
+      "authority": "core",
+      "bytes": 418
+    },
+    {
+      "path": "story/main/state/locations/LOC-001-western-plain.md",
+      "sha256": "260c38fb6389d7983bcf20573e35608495a0612009968a7da5859ba0d913d110",
+      "authority": "core",
+      "bytes": 392
+    },
+    {
+      "path": "story/main/state/locations/LOC-002-blacktide-sea.md",
+      "sha256": "faf9747d12f882dd331696b4c65564be241dad9a6c6edc37e0a1d1aa13d90fad",
+      "authority": "core",
+      "bytes": 389
+    },
+    {
+      "path": "story/main/state/locations/LOC-003-wreckfen-marsh.md",
+      "sha256": "eb8f82430e8ac7e54e3f0d7597f61e1b4294b6d5d7fc194fd2819b7d1d22a7d3",
+      "authority": "core",
+      "bytes": 425
+    },
+    {
+      "path": "story/main/state/locations/LOC-004-eastern-plain.md",
+      "sha256": "a8690408fbd76966ef044d345fdc302dee745769390cb8b25609e1d2fb83fc02",
+      "authority": "core",
+      "bytes": 398
+    },
+    {
+      "path": "system/manual-edit-ledger.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "authority": "support",
+      "bytes": 0
+    },
+    {
+      "path": "system/turn-ledger.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "authority": "support",
+      "bytes": 0
+    },
+    {
+      "path": "system/validation-report.md",
+      "sha256": "ed8e6b159cc966e3a87116d867f97baf2d0ee44cbdeb4e55dfe1e432896c95cd",
+      "authority": "derived",
+      "bytes": 94
+    }
+  ]
+}

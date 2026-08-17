@@ -367,7 +367,7 @@ def materialize_creation_map(brief_text: str, starting_region: str) -> dict:
         (("mountain", "山脉", "高山", "群山"), "hills", [[22, 68], [35, 61], [47, 67]], 6, "#765c38"),
         (("desert", "沙漠", "荒漠"), "desert", [[68, 26], [78, 38], [72, 51]], 7, "#b98c45"),
         (("marsh", "swamp", "沼泽", "湿地"), "marsh", [[24, 68], [31, 76], [42, 71]], 6, "#60734f"),
-        (("coast", "island", "sea", "海岸", "岛", "海洋"), "coast", [[10, 16], [9, 43], [12, 76]], 7, "#456f86"),
+        (("coast", "island", "sea", "海岸", "大海", "海洋", "海峡", "海域"), "coast", [[10, 16], [9, 43], [12, 76]], 7, "#456f86"),
         (("snow", "tundra", "冰原", "雪原", "冻土"), "snow", [[32, 15], [50, 12], [67, 17]], 7, "#9eb5bd"),
         (("volcano", "volcanic", "火山"), "volcanic", [[76, 20], [82, 27]], 6, "#754538"),
     ]
@@ -387,6 +387,18 @@ def materialize_creation_map(brief_text: str, starting_region: str) -> dict:
             "color": color,
             "mutable_by_divine_action": True,
         })
+    terrain_zones = []
+    plain_mentions = len(re.findall(r"plain|平原", text))
+    has_sea = any(keyword in text for keyword in ("sea", "大海", "海洋", "海峡", "海域"))
+    has_marsh = any(keyword in text for keyword in ("marsh", "swamp", "沼泽", "湿地"))
+    if plain_mentions >= 2 and has_sea:
+        terrain_zones = [
+            {"id": "ZONE-WEST-PLAIN", "name": "西侧平原", "terrain": "plain", "bounds": [0, 0, 30, 100]},
+            {"id": "ZONE-CENTRAL-SEA", "name": "中央大海", "terrain": "coast", "bounds": [30, 0, 68, 100]},
+            {"id": "ZONE-EAST-PLAIN", "name": "东侧平原", "terrain": "plain", "bounds": [68, 0, 100, 100]},
+        ]
+        if has_marsh:
+            terrain_zones.insert(2, {"id": "ZONE-DANGER-MARSH", "name": "危险沼泽", "terrain": "marsh", "bounds": [52, 56, 68, 100], "danger": True})
     map_generation = {
         "status": "generated" if brushes else "pending",
         "source": "setup/WORLD-BRIEF.md",
@@ -397,6 +409,7 @@ def materialize_creation_map(brief_text: str, starting_region: str) -> dict:
             "schema": "be-a-god.map-hierarchy.v1",
             "levels": ["world", "region", "scene"],
             "nodes": [{"id": region_id, "name": region_name, "kind": "region", "level": "region"}],
+            "terrain_zones": terrain_zones,
             "map_generation": map_generation,
         },
         "coordinates": {

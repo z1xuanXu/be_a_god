@@ -205,7 +205,7 @@ def validate_map_layers_data(data: object, world: Path, active: dict[str, str], 
                 errors.append(f"{rel} {collection_name}[{index}] level `{item.get('level')}` is not in levels")
             if "source" in item:
                 validate_source_pointer(item.get("source"), world, errors, warnings, rel, f"{collection_name}[{index}].source")
-    valid_brush_kinds = {"river", "tributary", "hills", "forest", "custom"}
+    valid_brush_kinds = {"river", "tributary", "hills", "forest", "marsh", "custom"}
     for index, brush in enumerate(brushes, start=1):
         if not isinstance(brush, dict):
             errors.append(f"{rel} brushes[{index}] must be an object")

@@ -1,0 +1,15 @@
+{
+  "schema": "be-a-god.timeline.v1",
+  "world_id": "plain-sea-marsh",
+  "branch_id": "main",
+  "nodes": [
+    {
+      "id": "CHR-0001",
+      "event_id": "EVT-0001",
+      "time": "year 1, day 1",
+      "label": "EVT-0001 world confirmed",
+      "state": "confirmed",
+      "source": "story/main/events/EVT-0001-world-confirmed.md"
+    }
+  ]
+}

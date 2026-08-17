@@ -2050,3 +2050,89 @@ button:not(.hex-tile):not(.hex-unit)::after {
     grid-template-columns: 1fr;
   }
 }
+
+/* Data-driven terrain zones and unit roster. */
+.terrain-zone-label {
+  position: absolute;
+  z-index: 42;
+  transform: translate(-50%, -50%);
+  max-width: 15%;
+  padding: 4px 8px;
+  color: #2b2112;
+  font-size: clamp(11px, 1.1vw, 17px);
+  font-weight: 900;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 1px 1px 0 rgba(255, 245, 193, 0.9), -1px -1px 0 rgba(255, 245, 193, 0.8);
+  pointer-events: none;
+}
+
+.terrain-zone-coast { color: #173f5a; }
+.terrain-zone-marsh { color: #293b24; }
+
+.unit-roster {
+  margin-top: 14px;
+  padding: 14px;
+  border: 2px solid var(--ink-outline);
+  border-radius: 16px;
+  background: rgba(255, 248, 215, 0.76);
+  box-shadow: var(--comic-shadow);
+}
+
+.unit-roster-heading h2,
+.unit-roster-heading p { margin: 0; }
+
+.unit-roster-heading p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.unit-roster-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.unit-roster-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 7px 9px;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.unit-roster-item .roster-icon {
+  grid-row: 1 / span 2;
+  width: 28px;
+  height: 36px;
+  background: url("./img/pieces/piece-generic-unit.png") center / contain no-repeat;
+  filter: drop-shadow(-1px 0 0 #090705) drop-shadow(1px 0 0 #090705) drop-shadow(0 2px 1px rgba(45, 28, 13, 0.42));
+}
+
+.unit-roster-item strong,
+.unit-roster-item small {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unit-roster-item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.unit-roster-empty {
+  color: var(--muted);
+  font-size: 13px;
+}
