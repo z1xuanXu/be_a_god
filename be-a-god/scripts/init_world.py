@@ -423,6 +423,41 @@ def materialize_creation_map(brief_text: str, starting_region: str) -> dict:
     }
 
 
+def plan_is_confirmed(plan: dict) -> bool:
+    return str(plan.get("status", "")).lower() == "confirmed"
+
+
+def materialize_confirmed_map_plan(plan: dict) -> dict:
+    zones = list(plan.get("terrain_zones", []))
+    features = list(plan.get("linear_features", []))
+    settlements = list(plan.get("settlements", []))
+    brushes = []
+    for feature in features:
+        if feature.get("kind") != "river" or not feature.get("points"):
+            continue
+        brushes.append({
+            "id": str(feature.get("id") or "FEATURE-RIVER-001").replace("FEATURE", "BRUSH"),
+            "kind": "river",
+            "label": str(feature.get("name") or "创世河流"),
+            "level": "region",
+            "points": feature["points"],
+            "width": 6,
+            "density": 16,
+            "jitter": 2,
+            "color": "#315b76",
+            "mutable_by_divine_action": True,
+        })
+    nodes = [{"id": item["id"], "name": item["name"], "kind": item.get("kind", "location"), "level": "region"} for item in settlements]
+    places = [{"id": item["id"], "name": item["name"], "kind": item.get("kind", "location"), "level": "region", "x": item["x"], "y": item["y"]} for item in settlements]
+    map_generation = {"status": "generated", "source": "setup/MAP-PLAN.json", "method": str(plan.get("generation", {}).get("method") or "reviewed-map-plan")}
+    return {
+        "hierarchy": {"schema": "be-a-god.map-hierarchy.v1", "levels": ["world", "region", "scene"], "nodes": nodes, "terrain_zones": zones, "map_generation": map_generation},
+        "coordinates": {"schema": "be-a-god.coordinates.v1", "coordinate_system": "normalized-0-100", "cell_size_meters": 5000, "places": places},
+        "brushes": brushes,
+        "map_generation": map_generation,
+    }
+
+
 def initial_files(
     world: Path,
     world_id: str,
@@ -431,6 +466,7 @@ def initial_files(
     content_profile: dict,
     seed: str,
     created_at: str,
+    map_plan: dict | None = None,
 ) -> dict[Path, str | dict]:
     story_main = world / "story" / "main"
     premise = brief_value(brief_text, "World premise", title)
@@ -489,9 +525,11 @@ def initial_files(
         world_summary_lines.append(f"- tone: {tone}")
     if absolute_prohibitions:
         world_summary_lines.append(f"- absolute_prohibitions: {absolute_prohibitions_text}")
-    creation_map = materialize_creation_map(brief_text, starting_region)
+    creation_map = materialize_confirmed_map_plan(map_plan) if map_plan else materialize_creation_map(brief_text, starting_region)
+    map_plan_file = map_plan if map_plan else None
     return {
         world / "setup" / "WORLD-BRIEF.md": brief_text,
+        world / "setup" / "MAP-PLAN.json": map_plan_file or {"schema": "be-a-god.map-plan.v1", "status": "legacy-keyword-seed", "source": "setup/WORLD-BRIEF.md"},
         world / "setup" / "drafts" / "world-draft.md": brief_text,
         world / "setup" / "world-spec.json": {
             "schema": SCHEMA,
@@ -651,6 +689,7 @@ def main() -> int:
     parser.add_argument("--world-id", required=True, help="Stable world id. Letters, numbers, dash and underscore are safest.")
     parser.add_argument("--title", help="Human-readable world title. Defaults to world id.")
     parser.add_argument("--brief", help="Confirmed WORLD-BRIEF.md draft.")
+    parser.add_argument("--map-plan", help="Confirmed MAP-PLAN.json. Required to preserve reviewed map geometry.")
     parser.add_argument("--content-profile", help="Confirmed content-profile.json draft.")
     parser.add_argument("--seed", help="Optional explicit random seed. Defaults to a generated token.")
     parser.add_argument("--confirmed", action="store_true", help="Required for writing formal world files.")
@@ -663,6 +702,12 @@ def main() -> int:
     worlds_dir = Path(args.worlds_dir).resolve()
     world = worlds_dir / world_id
     brief_path = Path(args.brief).resolve() if args.brief else None
+    map_plan_path = Path(args.map_plan).resolve() if args.map_plan else None
+    map_plan = None
+    if map_plan_path:
+        map_plan = json.loads(map_plan_path.read_text(encoding="utf-8"))
+        if not plan_is_confirmed(map_plan):
+            raise SystemExit("Refusing to initialize from an unconfirmed MAP-PLAN. Review it and set status: confirmed.")
     profile_path = Path(args.content_profile).resolve() if args.content_profile else None
     seed = args.seed or secrets.token_hex(16)
     created_at = utc_now()
@@ -679,7 +724,7 @@ def main() -> int:
     if not args.allow_unconfirmed_brief and not brief_is_confirmed(brief_text):
         raise SystemExit("Refusing to initialize from an unconfirmed WORLD-BRIEF. Add `Status: confirmed` or pass --allow-unconfirmed-brief.")
     content_profile = parse_content_profile(profile_path, brief_text)
-    files = initial_files(world, world_id, title, brief_text, content_profile, seed, created_at)
+    files = initial_files(world, world_id, title, brief_text, content_profile, seed, created_at, map_plan)
     dirs = mkdirs(world) if not args.dry_run else [world / rel for rel in DIRECTORIES]
 
     if args.dry_run:

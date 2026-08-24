@@ -51,8 +51,8 @@ Use when the player wants a new game, new world, or creation screen.
 2. Let the player mark fields as locked, polishable, or AI-fill.
 3. Write drafts under `setup/drafts/`; use `scripts/create_world_brief.py` when the player provides fill-in fields. Do not create formal world files until the player confirms.
 4. Validate the confirmed draft with `scripts/validate_world_brief.py <draft> --require-confirmed`.
-5. After confirmation, run `scripts/init_world.py --world-id <id> --brief <draft> --confirmed` to create the formal world tree, preserve creation fields plus field source map, materialize a deterministic initial semantic map from confirmed geography terms, and write the first `SAVE.md`. If no supported geography is present, mark map generation `pending` instead of silently substituting demo terrain or pseudo-random coordinates.
-6. Initialize random seed files, chronicle files, dashboard files, and `system/file-manifest.json`.
+5. Convert the confirmed prose brief into a reviewable low-cost map draft with `scripts/create_map_plan.py --brief <brief> --world-id <id> --output <MAP-PLAN.json>`. This is deterministic and makes no model/API call. Review terrain zones, directional features, settlement coordinates, and `unresolved` claims with the player.
+6. After the player confirms the map plan by setting `status: confirmed`, run `scripts/init_world.py --world-id <id> --brief <draft> --map-plan <MAP-PLAN.json> --confirmed`. Initialization must reject an unconfirmed MAP-PLAN and materialize only the reviewed geometry. If no map plan is supplied, legacy keyword seeding remains a compatibility path, not the preferred creation workflow.
 7. Initialize `setup/narrative-profile.json` with the hybrid-historical default and mirror its compact summary into `PLAYER.md`.
 8. Keep `setup/llm-api.config.json` visible for optional non-Codex model hosting; do not require an API key for Codex-hosted play.
 9. For a compact playable sample world, use `scripts/create_demo_world.py --worlds-dir <worlds-dir> --world-id <world-id> --confirmed --json` only when the player asks for a demo/tutorial world.

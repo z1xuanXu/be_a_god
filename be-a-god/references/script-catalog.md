@@ -7,6 +7,7 @@ Use scripts for mechanical work. Keep semantic invention in the model.
 - `init_world.py`: create formal world files from confirmed setup drafts, preserving creation fields, content bans, the field source map, and the default hybrid-historical narrative profile in `world-spec.json`, `content-profile.json`, `narrative-profile.json`, `WORLD.md`, `PLAYER.md`, and the initial `SAVE.md`.
 - `create_demo_world.py`: create a compact playable demo/tutorial world with real locations, visible character pieces, terrain brushes, a queued pressure event, a pending action request, frontend export, and validation.
 - `create_world_brief.py`: create editable WORLD-BRIEF drafts from player fill-in fields, including content bans and a field source map for locked, polishable, and AI-fill fields.
+- `create_map_plan.py`: deterministically convert confirmed brief geography into a reviewable MAP-PLAN draft with cardinal terrain zones, directional features, stable settlement coordinates, and explicit unresolved claims; it makes no model/API call.
 - `validate_world_brief.py`: validate creation drafts before initialization, rejecting confirmed drafts that miss required creation fields or the field source map.
 - `create_entity.py`: create branch-local entity/location cards from player/model-provided fields, reject unsafe `entity_id`/slug filename parts, then refresh indexes, map layers, pieces, and manifest.
 - `move_entity.py`: update a visible entity's location, coordinates, level, or status using exact `- id:` or a unique filename-prefix match, then refresh indexes, map pieces, and manifest.
@@ -69,6 +70,7 @@ The current skeleton includes:
 - `scripts/init_world.py`
 - `scripts/create_demo_world.py`
 - `scripts/create_world_brief.py`
+- `scripts/create_map_plan.py`
 - `scripts/validate_world_brief.py`
 - `scripts/create_entity.py`
 - `scripts/move_entity.py`
